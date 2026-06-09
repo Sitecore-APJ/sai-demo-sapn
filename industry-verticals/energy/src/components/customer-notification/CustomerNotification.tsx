@@ -43,7 +43,10 @@ export const Default = ({ params, fields }: CustomerNotificationProps) => {
     datasource.banner?.jsonValue
   );
 
-  const mapParseResult = parseOutageMapField(datasource.outageMap?.jsonValue?.value);
+  const outageMapValue = datasource.outageMap?.jsonValue?.value;
+  const mapParseResult = parseOutageMapField(
+    typeof outageMapValue === 'string' ? outageMapValue : undefined
+  );
 
   return (
     <div className={`customer-notification w-full ${styles ?? ''}`} id={id}>

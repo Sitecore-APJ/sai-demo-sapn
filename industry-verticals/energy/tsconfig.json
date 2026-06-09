@@ -9,7 +9,7 @@
       "assets/*": ["src/assets/*"]
     },
     "target": "es5",
-    "types": ["node"],
+    "types": ["node", "google.maps"],
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
