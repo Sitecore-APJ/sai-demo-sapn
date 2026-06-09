@@ -1,0 +1,19 @@
+---
+ID: "d9fef9d9-1234-5678-6789-b8c9d0e1f2a3"
+Parent: "66f773f1-9845-4882-94d7-2e6bf2a57c99"
+Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
+Path: "/sitecore/templates/Project/industry-verticals/Custom Templates/Customer Notification"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260609T000000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d9fef9d9-1234-5678-6789-b8c9d0e1f2a3"
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260609T000000Z

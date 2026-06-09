@@ -1,0 +1,33 @@
+---
+ID: "d4b9f2e3-5c6d-7e8f-9012-b2c3d4e5f6a7"
+Parent: "c3a8f1e2-4b5d-6c7e-8f90-a1b2c3d4e5f6"
+Template: "c3a8f1e2-4b5d-6c7e-8f90-a1b2c3d4e5f6"
+Path: "/sitecore/templates/Project/industry-verticals/Pages/CustomerNotificationPage/__Standard Values"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {A6EBF6A6-8F90-1234-3456-E5F6A7B8C9D0}
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "d4b9f2e3-5c6d-7e8f-9012-b2c3d4e5f6a7"
+- ID: "fd4e2050-186c-4375-8b99-e8a85dd7436e"
+  Hint: __Enable item fallback
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260609T000000Z
+    - ID: "4ff91248-33ab-4254-b6f7-2618fd0aebae"
+      Hint: Title
+      Value: $name
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d4b9f2e3-5c6d-7e8f-9012-b2c3d4e5f6a7"
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260609T000000Z

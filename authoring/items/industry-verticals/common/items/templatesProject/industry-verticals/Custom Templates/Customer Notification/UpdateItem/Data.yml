@@ -1,0 +1,19 @@
+---
+ID: "c8fdf8c8-0123-4567-5678-a7b8c9d0e1f2"
+Parent: "a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/Project/industry-verticals/Custom Templates/Customer Notification/UpdateItem/Data"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260609T000000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c8fdf8c8-0123-4567-5678-a7b8c9d0e1f2"
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260609T000000Z

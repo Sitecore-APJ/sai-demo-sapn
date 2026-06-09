@@ -22,9 +22,9 @@ export const GRID_CONDITIONS_DATA = {
     frequency: { value: 60.2, status: GRID_LABELS.grid.normal },
   },
   temperature: {
-    unit: GRID_LABELS.temperature.fahrenheit,
-    current: 108,
-    forecast: 112,
+    unit: GRID_LABELS.temperature.celsius,
+    current: 42,
+    forecast: 44,
     loadIncrease: '+15%',
   },
   outages: [

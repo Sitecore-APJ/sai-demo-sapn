@@ -1,0 +1,26 @@
+---
+ID: "b7fcf7b7-9012-3456-4567-f6a7b8c9d0e1"
+Parent: "a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0"
+Template: "a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0"
+Path: "/sitecore/templates/Project/industry-verticals/Custom Templates/Customer Notification/UpdateItem/__Standard Values"
+SharedFields:
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "b7fcf7b7-9012-3456-4567-f6a7b8c9d0e1"
+- ID: "fd4e2050-186c-4375-8b99-e8a85dd7436e"
+  Hint: __Enable item fallback
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260609T000000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "b7fcf7b7-9012-3456-4567-f6a7b8c9d0e1"
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260609T000000Z

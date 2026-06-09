@@ -1,0 +1,73 @@
+---
+ID: "f1bff1f1-3456-7890-8901-d0e1f2a3b4c5"
+Parent: "e0aff0e0-2345-6789-7890-c9d0e1f2a3b4"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: "/sitecore/layout/Renderings/Project/industry-verticals/Customer Notification/CustomerNotification"
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: CustomerNotification
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/warning.png
+- ID: "17bb046a-a32a-41b3-8315-81217947611b"
+  Hint: ComponentQuery
+  Value: |
+    query CustomerNotificationQuery($datasource: String!, $language: String!) {
+      datasource: item(path: $datasource, language: $language) {
+        title: field(name: "Title") {
+          jsonValue
+        }
+        outageLocation: field(name: "OutageLocation") {
+          jsonValue
+        }
+        outageDate: field(name: "OutageDate") {
+          jsonValue
+        }
+        outageMap: field(name: "OutageMap") {
+          jsonValue
+        }
+        banner: field(name: "Banner") {
+          jsonValue
+        }
+        children {
+          results {
+            ... on UpdateItem {
+              id
+              updateTitle {
+                jsonValue
+              }
+              updateMessage {
+                jsonValue
+              }
+              updateDateTime {
+                jsonValue
+              }
+              updateStatus {
+                jsonValue
+              }
+            }
+          }
+        }
+      }
+    }
+- ID: "a3411ff6-c978-40aa-b059-a49b9ca2209b"
+  Hint: Can select Page as a data source
+  Value: 1
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "f1bff1f1-3456-7890-8901-d0e1f2a3b4c5"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260609T000000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "f1bff1f1-3456-7890-8901-d0e1f2a3b4c5"
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260609T000000Z

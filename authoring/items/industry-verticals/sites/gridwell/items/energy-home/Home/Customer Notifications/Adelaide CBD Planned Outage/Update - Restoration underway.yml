@@ -1,0 +1,32 @@
+---
+ID: "cc030303-0303-4003-8003-000000000004"
+Parent: "cc030303-0303-4003-8003-000000000002"
+Template: "a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0"
+Path: "/sitecore/content/industry-verticals/gridwell/Home/Customer Notifications/Adelaide CBD Planned Outage/Update - Restoration underway"
+SharedFields:
+- ID: "bb020202-0202-4002-8002-000000000003"
+  Hint: UpdateDateTime
+  Value: 20260609T100000Z
+- ID: "bb020202-0202-4002-8002-000000000004"
+  Hint: UpdateStatus
+  Value: Active
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260609T000000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "cc030303-0303-4003-8003-000000000004"
+    - ID: "bb020202-0202-4002-8002-000000000001"
+      Hint: UpdateTitle
+      Value: Crews on site — restoration underway
+    - ID: "bb020202-0202-4002-8002-000000000002"
+      Hint: UpdateMessage
+      Value: Our crews are on site in Adelaide CBD. Power is expected to be restored to remaining affected customers by 2:00 PM ACST.
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260609T000000Z

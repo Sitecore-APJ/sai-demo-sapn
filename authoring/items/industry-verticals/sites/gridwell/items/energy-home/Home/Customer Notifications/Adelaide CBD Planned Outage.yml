@@ -1,0 +1,69 @@
+---
+ID: "cc030303-0303-4003-8003-000000000002"
+Parent: "cc030303-0303-4003-8003-000000000001"
+Template: "c3a8f1e2-4b5d-6c7e-8f90-a1b2c3d4e5f6"
+Path: "/sitecore/content/industry-verticals/gridwell/Home/Customer Notifications/Adelaide CBD Planned Outage"
+SharedFields:
+- ID: "aa010101-0101-4001-8001-000000000002"
+  Hint: OutageDate
+  Value: 20260609T000000Z
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{DD040404-0404-4004-8004-000000000001}"
+          s:ds="cc030303-0303-4003-8003-000000000002"
+          s:id="{F1BFF1F1-3456-7890-8901-D0E1F2A3B4C5}"
+          s:par="GridParameters&amp;FieldNames&amp;Styles&amp;RenderingIdentifier&amp;CSSStyles&amp;DynamicPlaceholderId=1"
+          s:ph="headless-main" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260609T000000Z
+    - ID: "32c603c2-c858-4138-8fcb-8e18a5ad8240"
+      Hint: metadataTitle
+      Value: Adelaide CBD Planned Outage | Gridwell
+    - ID: "4e0720e9-9d50-4ddc-87cf-ecd65e8e94c8"
+      Hint: NavigationTitle
+      Value: Adelaide CBD Outage
+    - ID: "4ff91248-33ab-4254-b6f7-2618fd0aebae"
+      Hint: Title
+      Value: Adelaide CBD Planned Outage
+    - ID: "6b43d550-6d5f-46ce-ac84-3d9493c45bc6"
+      Hint: metadataDescription
+      Value: Customer notification for a planned outage affecting Adelaide CBD and surrounding suburbs.
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "cc030303-0303-4003-8003-000000000002"
+    - ID: "aa010101-0101-4001-8001-000000000001"
+      Hint: OutageLocation
+      Value: Adelaide CBD and North Adelaide
+    - ID: "aa010101-0101-4001-8001-000000000003"
+      Hint: OutageMap
+      Value: |
+        center: -34.9285, 138.6007, zoom: 12
+        Adelaide CBD | -34.9285, 138.6007 | active | 2026-06-09 | Power outage affecting 200 customers in the CBD
+        North Adelaide | -34.9100, 138.5950 | planned | 2026-06-10 | Scheduled maintenance on local feeder
+        Glenelg | -34.9800, 138.5200 | restored | 2026-06-08 | Power restored to all affected customers
+    - ID: "aa010101-0101-4001-8001-000000000004"
+      Hint: Banner
+      Value: Planned maintenance will affect power supply in Adelaide CBD on 9 June. Crews are working to restore supply as safely and quickly as possible.
+    - ID: "d3886445-9ee0-46a0-ae5e-8857dd6b395f"
+      Hint: pageSummary
+      Value: Planned outage notification for Adelaide CBD affecting approximately 200 customers. Includes map pins for active, planned, and restored areas with progressive update items for the customer notification demo workflow.
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260609T000000Z
