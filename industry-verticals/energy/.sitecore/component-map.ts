@@ -90,7 +90,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['GridConditions', { ...GridConditions }],
   ['Footer', { ...Footer }],
   ['Features', { ...Features, componentType: 'client' }],
-  ['NotificationBanner', { ...NotificationBanner }],
+  ['NotificationBanner', { ...NotificationBanner, componentType: 'client' }],
   ['CustomerNotification', { ...CustomerNotification, componentType: 'client' }],
   ['ContentBlock', { ...ContentBlock }],
   ['Container', { ...Container }],

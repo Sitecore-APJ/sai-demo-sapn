@@ -30,7 +30,7 @@ export interface CustomerNotificationPageFields {
   OutageLocation: Field<string>;
   OutageDate: Field<string>;
   OutageMap: Field<string>;
-  Banner: Field<string>;
+  Banner: Field<boolean>;
 }
 
 export type CustomerNotificationPage = SitecoreItem<CustomerNotificationPageFields>;
@@ -59,18 +59,28 @@ export interface CustomerNotificationDatasourceGQL {
   outageLocation: IGQLTextField;
   outageDate: { jsonValue: Field<string> };
   outageMap: IGQLTextField;
-  banner: IGQLTextField;
-  children: { results: UpdateItemGQL[] };
 }
 
 export interface CustomerNotificationGQLFields {
   data: {
-    datasource: CustomerNotificationDatasourceGQL;
+    datasource?: CustomerNotificationDatasourceGQL;
+    contextItem?: CustomerNotificationDatasourceGQL;
+  };
+}
+
+export interface NotificationBannerDatasourceGQL {
+  banner: { jsonValue: Field<boolean> };
+  children: { results: UpdateItemGQL[] };
+}
+
+export interface NotificationBannerGQLFields {
+  data: {
+    datasource?: NotificationBannerDatasourceGQL;
+    contextItem?: NotificationBannerDatasourceGQL;
   };
 }
 
 export interface BannerContent {
-  source: 'update' | 'fallback';
   title: string;
   message: string;
   status?: UpdateItemStatus;

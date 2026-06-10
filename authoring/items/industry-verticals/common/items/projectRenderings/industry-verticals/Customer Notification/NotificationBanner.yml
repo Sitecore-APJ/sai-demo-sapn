@@ -1,31 +1,41 @@
 ---
-ID: "f1bff1f1-3456-7890-8901-d0e1f2a3b4c5"
+ID: "a2b3c4d5-e6f7-4890-a1b2-c3d4e5f60701"
 Parent: "e0aff0e0-2345-6789-7890-c9d0e1f2a3b4"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: "/sitecore/layout/Renderings/Project/industry-verticals/Customer Notification/CustomerNotification"
+Path: "/sitecore/layout/Renderings/Project/industry-verticals/Customer Notification/NotificationBanner"
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
-  Value: CustomerNotification
+  Value: NotificationBanner
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
   Value: Office/32x32/sign_warning.png
 - ID: "17bb046a-a32a-41b3-8315-81217947611b"
   Hint: ComponentQuery
   Value: |
-    query CustomerNotificationQuery($datasource: String!, $language: String!) {
+    query NotificationBannerQuery($datasource: String!, $language: String!) {
       datasource: item(path: $datasource, language: $language) {
-        title: field(name: "Title") {
+        banner: field(name: "Banner") {
           jsonValue
         }
-        outageLocation: field(name: "OutageLocation") {
-          jsonValue
-        }
-        outageDate: field(name: "OutageDate") {
-          jsonValue
-        }
-        outageMap: field(name: "OutageMap") {
-          jsonValue
+        children {
+          results {
+            ... on UpdateItem {
+              id
+              updateTitle {
+                jsonValue
+              }
+              updateMessage {
+                jsonValue
+              }
+              updateDateTime {
+                jsonValue
+              }
+              updateStatus {
+                jsonValue
+              }
+            }
+          }
         }
       }
     }
@@ -34,7 +44,7 @@ SharedFields:
   Value: 1
 - ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
   Hint: __Shared revision
-  Value: "c8d4e2f1-6a3b-4f9e-8c2d-1e5f7a9b0c34"
+  Value: "d1e2f3a4-b5c6-4d7e-8f9a-0b1c2d3e4f50"
 - ID: "e829c217-5e94-4306-9c48-2634b094fdc2"
   Hint: OtherProperties
   Value: IsRenderingsWithDynamicPlaceholders=true
@@ -43,7 +53,7 @@ Languages:
   Fields:
   - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
     Hint: __Display name
-    Value: Customer Notification
+    Value: Notification Banner
   Versions:
   - Version: 1
     Fields:
@@ -52,7 +62,7 @@ Languages:
       Value: 20260609T000000Z
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "f1bff1f1-3456-7890-8901-d0e1f2a3b4c5"
+      Value: "e2f3a4b5-c6d7-4e8f-9a0b-1c2d3e4f5061"
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
       Value: 20260609T000000Z

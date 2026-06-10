@@ -20,8 +20,14 @@ SharedFields:
         <r
           uid="{DD040404-0404-4004-8004-000000000001}"
           s:ds="cc030303-0303-4003-8003-000000000002"
-          s:id="{F1BFF1F1-3456-7890-8901-D0E1F2A3B4C5}"
+          s:id="{A2B3C4D5-E6F7-4890-A1B2-C3D4E5F60701}"
           s:par="GridParameters&amp;FieldNames&amp;Styles&amp;RenderingIdentifier&amp;CSSStyles&amp;DynamicPlaceholderId=1"
+          s:ph="headless-main" />
+        <r
+          uid="{DD040404-0404-4004-8004-000000000002}"
+          s:ds="cc030303-0303-4003-8003-000000000002"
+          s:id="{F1BFF1F1-3456-7890-8901-D0E1F2A3B4C5}"
+          s:par="GridParameters&amp;FieldNames&amp;Styles&amp;RenderingIdentifier&amp;CSSStyles&amp;DynamicPlaceholderId=2"
           s:ph="headless-main" />
       </d>
     </r>
@@ -60,7 +66,7 @@ Languages:
         Glenelg | -34.9800, 138.5200 | restored | 2026-06-08 | Power restored to all affected customers
     - ID: "aa010101-0101-4001-8001-000000000004"
       Hint: Banner
-      Value: Planned maintenance will affect power supply in Adelaide CBD on 9 June. Crews are working to restore supply as safely and quickly as possible.
+      Value: 1
     - ID: "d3886445-9ee0-46a0-ae5e-8857dd6b395f"
       Hint: pageSummary
       Value: Planned outage notification for Adelaide CBD affecting approximately 200 customers. Includes map pins for active, planned, and restored areas with progressive update items for the customer notification demo workflow.

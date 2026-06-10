@@ -1,5 +1,5 @@
 import { BannerContent, UpdateItemGQL, UpdateItemStatus } from '@/types/customer-notification';
-import { TextField } from '@sitecore-content-sdk/nextjs';
+import { isCheckboxFieldEnabled } from '@/lib/customer-notification/isCheckboxFieldEnabled';
 
 const VALID_UPDATE_STATUSES: UpdateItemStatus[] = ['Active', 'Resolved', 'Cancelled'];
 
@@ -25,15 +25,19 @@ function parseUpdateTimestamp(value: string | undefined): number | null {
 }
 
 /**
- * Selects banner content from the latest active update item or falls back to the page Banner field.
+ * Selects banner content from the latest active update item when the page banner toggle is enabled.
  * @param {UpdateItemGQL[] | undefined} updateItems - Child update items from the page datasource
- * @param {TextField | undefined} fallbackBanner - Page Banner field used when no active update has a title
- * @returns {BannerContent | null} Resolved banner content, or null when nothing should be displayed
+ * @param {boolean | string | number | undefined | null} showLatestUpdateBanner - Page Banner checkbox value
+ * @returns {BannerContent | null} Resolved banner content, or null when the banner should be hidden
  */
 export function selectBannerContent(
   updateItems: UpdateItemGQL[] | undefined,
-  fallbackBanner: TextField | undefined
+  showLatestUpdateBanner: boolean | string | number | undefined | null
 ): BannerContent | null {
+  if (!isCheckboxFieldEnabled(showLatestUpdateBanner)) {
+    return null;
+  }
+
   const activeUpdates = (updateItems ?? [])
     .filter((item) => item.updateStatus?.jsonValue?.value === 'Active')
     .sort((a, b) => {
@@ -58,23 +62,16 @@ export function selectBannerContent(
   const latest = activeUpdates[0];
   const latestTitle = toStringFieldValue(latest?.updateTitle?.jsonValue?.value)?.trim();
 
-  if (latestTitle) {
-    const status = parseUpdateItemStatus(toStringFieldValue(latest.updateStatus?.jsonValue?.value));
-
-    return {
-      source: 'update',
-      title: latestTitle,
-      message: toStringFieldValue(latest.updateMessage?.jsonValue?.value) ?? '',
-      ...(status ? { status } : {}),
-      dateTime: toStringFieldValue(latest.updateDateTime?.jsonValue?.value),
-    };
+  if (!latestTitle) {
+    return null;
   }
 
-  const bannerText = toStringFieldValue(fallbackBanner?.value)?.trim();
+  const status = parseUpdateItemStatus(toStringFieldValue(latest.updateStatus?.jsonValue?.value));
 
-  if (bannerText) {
-    return { source: 'fallback', title: '', message: bannerText };
-  }
-
-  return null;
+  return {
+    title: latestTitle,
+    message: toStringFieldValue(latest.updateMessage?.jsonValue?.value) ?? '',
+    ...(status ? { status } : {}),
+    dateTime: toStringFieldValue(latest.updateDateTime?.jsonValue?.value),
+  };
 }

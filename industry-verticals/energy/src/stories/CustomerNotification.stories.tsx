@@ -14,37 +14,6 @@ const mockFields: CustomerNotificationGQLFields = {
       outageLocation: { jsonValue: { value: 'Adelaide CBD and North Adelaide' } },
       outageDate: { jsonValue: { value: '2026-06-09T00:00:00Z' } },
       outageMap: { jsonValue: { value: sampleMapText } },
-      banner: {
-        jsonValue: {
-          value: 'Planned maintenance will affect power supply in Adelaide CBD on 9 June.',
-        },
-      },
-      children: {
-        results: [
-          {
-            id: 'update-1',
-            updateTitle: { jsonValue: { value: 'Initial outage reported' } },
-            updateMessage: {
-              jsonValue: {
-                value: 'We are aware of an outage affecting Adelaide CBD.',
-              },
-            },
-            updateDateTime: { jsonValue: { value: '2026-06-09T06:00:00Z' } },
-            updateStatus: { jsonValue: { value: 'Resolved' } },
-          },
-          {
-            id: 'update-2',
-            updateTitle: { jsonValue: { value: 'Crews on site — restoration underway' } },
-            updateMessage: {
-              jsonValue: {
-                value: 'Our crews are on site. Power is expected to be restored by 2:00 PM ACST.',
-              },
-            },
-            updateDateTime: { jsonValue: { value: '2026-06-09T10:00:00Z' } },
-            updateStatus: { jsonValue: { value: 'Active' } },
-          },
-        ],
-      },
     },
   },
 };
@@ -67,23 +36,5 @@ export const Default: Story = {
       componentName: 'CustomerNotification',
     },
     fields: mockFields,
-  },
-};
-
-export const FallbackBannerOnly: Story = {
-  args: {
-    params: CommonParams,
-    rendering: {
-      ...CommonRendering,
-      componentName: 'CustomerNotification',
-    },
-    fields: {
-      data: {
-        datasource: {
-          ...mockFields.data.datasource,
-          children: { results: [] },
-        },
-      },
-    },
   },
 };
