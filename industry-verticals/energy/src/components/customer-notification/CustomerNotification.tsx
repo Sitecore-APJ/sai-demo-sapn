@@ -26,7 +26,7 @@ function hasPageContent(pageFields: CustomerNotificationPageFields | undefined):
 
   return Boolean(
     pageFields.Title?.value ||
-    pageFields.Location?.value ||
+    pageFields.OutageLocation?.value ||
     pageFields.OutageDate?.value ||
     pageFields.OutageSummary?.value ||
     hasRichTextContent(pageFields.OutageDescription) ||
@@ -60,7 +60,7 @@ export const Default = ({ params, fields }: CustomerNotificationProps) => {
     return null;
   }
 
-  const showLocation = Boolean(pageFields.Location?.value) || isPageEditing;
+  const showLocation = Boolean(pageFields.OutageLocation?.value) || isPageEditing;
   const showOutageDate = !isFieldValueEmpty(pageFields.OutageDate) || isPageEditing;
 
   return (
@@ -78,7 +78,11 @@ export const Default = ({ params, fields }: CustomerNotificationProps) => {
               {showLocation && (
                 <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 shrink-0" aria-hidden />
-                  <ContentSdkText field={pageFields.Location} tag="span" />
+                  <ContentSdkText
+                    field={pageFields?.OutageLocation}
+                    tag="span"
+                    className="text-foreground-light text-base"
+                  />
                 </div>
               )}
 
@@ -105,6 +109,19 @@ export const Default = ({ params, fields }: CustomerNotificationProps) => {
           )}
         </header>
 
+        <section aria-label="Outage map" className="space-y-4">
+          <h2 className="text-xl font-semibold">Outage map</h2>
+          <div className="text-foreground-light space-y-1 text-sm">
+            <p className="font-medium">Outage location pin on map</p>
+            <ContentSdkText field={pageFields?.OutageLocationPinOnMap} tag="p" />
+          </div>
+          <OutageMap
+            data={mapParseResult.data}
+            parseErrors={mapParseResult.errors}
+            isEditing={isPageEditing}
+          />
+        </section>
+
         <section className="space-y-2">
           <h2 className="text-xl font-semibold">Outage summary</h2>
           <ContentSdkText
@@ -119,19 +136,6 @@ export const Default = ({ params, fields }: CustomerNotificationProps) => {
           <div className="ck-content text-foreground-light">
             <ContentSdkRichText field={pageFields?.OutageDescription} />
           </div>
-        </section>
-
-        <section aria-label="Outage map" className="space-y-4">
-          <h2 className="text-xl font-semibold">Outage map</h2>
-          <div className="text-foreground-light space-y-1 text-sm">
-            <p className="font-medium">Outage location pin on map</p>
-            <ContentSdkText field={pageFields?.OutageLocationPinOnMap} tag="p" />
-          </div>
-          <OutageMap
-            data={mapParseResult.data}
-            parseErrors={mapParseResult.errors}
-            isEditing={isPageEditing}
-          />
         </section>
       </div>
     </div>

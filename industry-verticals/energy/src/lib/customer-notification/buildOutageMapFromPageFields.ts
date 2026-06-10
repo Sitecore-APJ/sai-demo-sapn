@@ -49,7 +49,7 @@ export function buildOutageMapFromPageFields(
     return { data: null, errors: [parsed.error] };
   }
 
-  const title = fields?.Location?.value?.trim() || 'Outage location';
+  const title = fields?.OutageLocation?.value?.trim() || 'Outage location';
   const summary = fields?.OutageSummary?.value?.trim();
   const description = getRichTextPlainText(fields?.OutageDescription);
   const location = summary || description || title;

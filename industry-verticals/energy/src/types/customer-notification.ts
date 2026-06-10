@@ -27,7 +27,7 @@ export interface ParseOutageMapResult {
 
 export interface CustomerNotificationPageFields {
   Title: Field<string>;
-  Location: Field<string>;
+  OutageLocation: Field<string>;
   OutageDate: Field<string>;
   OutageSummary: Field<string>;
   OutageDescription: RichTextField;
