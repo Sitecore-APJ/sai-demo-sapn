@@ -1,24 +1,21 @@
 ---
-ID: "aa010101-0101-4001-8001-000000000004"
+ID: "aa010101-0101-4001-8001-000000000005"
 Parent: "e5caf3e4-6d7e-8f90-1234-c3d4e5f6a7b8"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: "/sitecore/templates/Project/industry-verticals/Pages/CustomerNotificationPage/Content/Banner"
+Path: "/sitecore/templates/Project/industry-verticals/Pages/CustomerNotificationPage/Content/OutageSummary"
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
-  Value: Checkbox
-- ID: "b118496a-0f78-4a27-b55f-0a6c4b0b0fe1"
-  Hint: Default value
-  Value: 1
+  Value: "Single-Line Text"
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 400
+  Value: 250
 Languages:
 - Language: en
   Fields:
   - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
     Hint: Title
-    Value: Latest Info Banner
+    Value: Outage Summary
   Versions:
   - Version: 1
     Fields:
@@ -27,7 +24,7 @@ Languages:
       Value: 20260609T000000Z
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "aa010101-0101-4001-8001-000000000004"
+      Value: "aa010101-0101-4001-8001-000000000005"
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
       Value: 20260609T000000Z

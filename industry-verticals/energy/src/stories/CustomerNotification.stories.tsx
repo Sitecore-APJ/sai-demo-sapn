@@ -1,21 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Default as CustomerNotification } from '../components/customer-notification/CustomerNotification';
 import { CommonParams, CommonRendering } from './common/commonData';
-import { CustomerNotificationGQLFields } from '@/types/customer-notification';
+import { CustomerNotificationPageFields } from '@/types/customer-notification';
+import { createRichTextField, createTextField } from './helpers/createFields';
 
-const sampleMapText = `center: -34.9285, 138.6007, zoom: 12
-Adelaide CBD | -34.9285, 138.6007 | active | 2026-06-09 | Power outage affecting 200 customers
-North Adelaide | -34.9100, 138.5950 | planned | 2026-06-10 | Scheduled maintenance`;
-
-const mockFields: CustomerNotificationGQLFields = {
-  data: {
-    datasource: {
-      title: { jsonValue: { value: 'Adelaide CBD Planned Outage' } },
-      outageLocation: { jsonValue: { value: 'Adelaide CBD and North Adelaide' } },
-      outageDate: { jsonValue: { value: '2026-06-09T00:00:00Z' } },
-      outageMap: { jsonValue: { value: sampleMapText } },
-    },
-  },
+const mockFields: CustomerNotificationPageFields = {
+  Title: createTextField('Adelaide CBD Planned Outage', 1),
+  Location: createTextField('Adelaide CBD and North Adelaide', 1),
+  OutageDate: { value: '2026-06-09T00:00:00Z' },
+  OutageSummary: createTextField(
+    'Planned outage affecting approximately 200 customers in Adelaide CBD',
+    1
+  ),
+  OutageDescription: createRichTextField(2),
+  OutageLocationPinOnMap: createTextField('-34.9285, 138.6007', 1),
+  Banner: { value: true },
 };
 
 const meta = {

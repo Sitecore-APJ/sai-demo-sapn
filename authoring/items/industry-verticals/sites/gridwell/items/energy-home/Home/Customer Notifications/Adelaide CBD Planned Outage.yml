@@ -55,15 +55,18 @@ Languages:
       Hint: __Revision
       Value: "cc030303-0303-4003-8003-000000000002"
     - ID: "aa010101-0101-4001-8001-000000000001"
-      Hint: OutageLocation
+      Hint: Location
       Value: Adelaide CBD and North Adelaide
     - ID: "aa010101-0101-4001-8001-000000000003"
-      Hint: OutageMap
+      Hint: OutageLocationPinOnMap
+      Value: "-34.9285, 138.6007"
+    - ID: "aa010101-0101-4001-8001-000000000005"
+      Hint: OutageSummary
+      Value: Planned outage affecting approximately 200 customers in Adelaide CBD
+    - ID: "aa010101-0101-4001-8001-000000000006"
+      Hint: OutageDescription
       Value: |
-        center: -34.9285, 138.6007, zoom: 12
-        Adelaide CBD | -34.9285, 138.6007 | active | 2026-06-09 | Power outage affecting 200 customers in the CBD
-        North Adelaide | -34.9100, 138.5950 | planned | 2026-06-10 | Scheduled maintenance on local feeder
-        Glenelg | -34.9800, 138.5200 | restored | 2026-06-08 | Power restored to all affected customers
+        <div class="ck-content"><p>SA Power Networks is conducting planned maintenance on the local feeder serving Adelaide CBD and North Adelaide. Power is expected to be restored by 6:00 PM on the outage date.</p><p>Affected customers have been notified by SMS and email. For updates, check this page or call 13 13 66.</p></div>
     - ID: "aa010101-0101-4001-8001-000000000004"
       Hint: Banner
       Value: 1

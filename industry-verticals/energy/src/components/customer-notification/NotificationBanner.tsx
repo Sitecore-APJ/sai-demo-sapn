@@ -73,21 +73,11 @@ export const Default = ({ params, fields }: NotificationBannerProps) => {
   const pageFields = page.layout.sitecore.route?.fields as
     | CustomerNotificationPageFields
     | undefined;
-  const pageBannerValue = pageFields?.Banner?.value;
-
   const showLatestUpdateBanner = isCheckboxFieldEnabled(
-    datasource?.banner?.jsonValue?.value ?? pageBannerValue
+    datasource?.banner?.jsonValue?.value ?? pageFields?.Banner?.value
   );
 
   const bannerContent = selectBannerContent(datasource?.children?.results, showLatestUpdateBanner);
-
-  if (!datasource && isPageEditing) {
-    return (
-      <div className={`component notification-banner ${styles ?? ''}`} id={id}>
-        [NOTIFICATION BANNER]
-      </div>
-    );
-  }
 
   if (bannerContent) {
     return (
@@ -103,7 +93,7 @@ export const Default = ({ params, fields }: NotificationBannerProps) => {
         <div className="border-border bg-background-muted border-b px-4 py-3 text-center text-sm">
           {showLatestUpdateBanner
             ? 'Banner hidden — add an active Update Item with a title.'
-            : 'Banner hidden — enable Latest info update banner on the page.'}
+            : 'Banner hidden — enable Latest Info Banner on the page.'}
         </div>
       </div>
     );

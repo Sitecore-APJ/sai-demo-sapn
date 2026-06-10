@@ -12,23 +12,10 @@ SharedFields:
   Value: Office/32x32/sign_warning.png
 - ID: "17bb046a-a32a-41b3-8315-81217947611b"
   Hint: ComponentQuery
-  Value: |
-    query CustomerNotificationQuery($datasource: String!, $language: String!) {
-      datasource: item(path: $datasource, language: $language) {
-        title: field(name: "Title") {
-          jsonValue
-        }
-        outageLocation: field(name: "OutageLocation") {
-          jsonValue
-        }
-        outageDate: field(name: "OutageDate") {
-          jsonValue
-        }
-        outageMap: field(name: "OutageMap") {
-          jsonValue
-        }
-      }
-    }
+  Value: 
+- ID: "b0b15510-b138-470e-8f33-8da2e228aafe"
+  Hint: Rendering Contents Resolver
+  Value: "{6CCCBCDE-5E95-44E4-AE66-CFE7D3A0589E}"
 - ID: "a3411ff6-c978-40aa-b059-a49b9ca2209b"
   Hint: Can select Page as a data source
   Value: 1

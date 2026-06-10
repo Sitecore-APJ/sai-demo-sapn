@@ -1,4 +1,4 @@
-import { Field } from '@sitecore-content-sdk/nextjs';
+import { Field, RichTextField } from '@sitecore-content-sdk/nextjs';
 import { SitecoreItem } from './common';
 import { IGQLTextField } from './igql';
 
@@ -27,9 +27,11 @@ export interface ParseOutageMapResult {
 
 export interface CustomerNotificationPageFields {
   Title: Field<string>;
-  OutageLocation: Field<string>;
+  Location: Field<string>;
   OutageDate: Field<string>;
-  OutageMap: Field<string>;
+  OutageSummary: Field<string>;
+  OutageDescription: RichTextField;
+  OutageLocationPinOnMap: Field<string>;
   Banner: Field<boolean>;
 }
 
@@ -52,20 +54,6 @@ export interface UpdateItemGQL {
   updateMessage: IGQLTextField;
   updateDateTime: { jsonValue: Field<string> };
   updateStatus: IGQLTextField;
-}
-
-export interface CustomerNotificationDatasourceGQL {
-  title: IGQLTextField;
-  outageLocation: IGQLTextField;
-  outageDate: { jsonValue: Field<string> };
-  outageMap: IGQLTextField;
-}
-
-export interface CustomerNotificationGQLFields {
-  data: {
-    datasource?: CustomerNotificationDatasourceGQL;
-    contextItem?: CustomerNotificationDatasourceGQL;
-  };
 }
 
 export interface NotificationBannerDatasourceGQL {
