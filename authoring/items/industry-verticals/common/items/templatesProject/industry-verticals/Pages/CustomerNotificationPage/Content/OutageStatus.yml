@@ -1,27 +1,27 @@
 ---
-ID: "aa010101-0101-4001-8001-000000000003"
+ID: "aa010101-0101-4001-8001-000000000007"
 Parent: "e5caf3e4-6d7e-8f90-1234-c3d4e5f6a7b8"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: "/sitecore/templates/Project/industry-verticals/Pages/CustomerNotificationPage/Content/OutageMap"
+Path: "/sitecore/templates/Project/industry-verticals/Pages/CustomerNotificationPage/Content/OutageStatus"
 SharedFields:
 - ID: "1eb8ae32-e190-44a6-968d-ed904c794ebf"
   Hint: Source
-  Value: "query:$siteMedia"
+  Value: "Active|Planned|Restored"
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
-  Value: Image
+  Value: Droplist
+- ID: "b118496a-0f78-4a27-b55f-0a6c4b0b0fe1"
+  Hint: Default value
+  Value: Active
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 300
+  Value: 290
 Languages:
 - Language: en
   Fields:
   - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
     Hint: Title
-    Value: Outage Map Image
-  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
-    Hint: __Display name
-    Value: Outage Map Image
+    Value: Outage Status
   Versions:
   - Version: 1
     Fields:
@@ -30,7 +30,7 @@ Languages:
       Value: 20260609T000000Z
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "aa010101-0101-4001-8001-000000000003"
+      Value: "aa010101-0101-4001-8001-000000000007"
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
       Value: 20260609T000000Z

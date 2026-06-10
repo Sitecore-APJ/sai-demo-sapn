@@ -6,14 +6,15 @@ import { createRichTextField, createTextField } from './helpers/createFields';
 
 const mockFields: CustomerNotificationPageFields = {
   Title: createTextField('Adelaide CBD Planned Outage', 1),
-  OutageLocation: createTextField('Adelaide CBD and North Adelaide', 1),
+  Location: createTextField('Adelaide CBD and North Adelaide', 1),
   OutageDate: { value: '2026-06-09T00:00:00Z' },
   OutageSummary: createTextField(
     'Planned outage affecting approximately 200 customers in Adelaide CBD',
     1
   ),
   OutageDescription: createRichTextField(2),
-  OutageMap: createTextField('-34.9285, 138.6007', 1),
+  OutageStatus: { value: 'Planned' },
+  OutageMap: { value: {} },
   Banner: { value: true },
 };
 

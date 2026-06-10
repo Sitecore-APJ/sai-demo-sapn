@@ -1,37 +1,17 @@
-import { Field, RichTextField } from '@sitecore-content-sdk/nextjs';
+import { Field, ImageField, RichTextField } from '@sitecore-content-sdk/nextjs';
 import { SitecoreItem } from './common';
 import { IGQLTextField } from './igql';
 
-export type OutageStatus = 'active' | 'planned' | 'restored';
-
-export interface OutagePin {
-  id: string;
-  title: string;
-  location: string;
-  status: OutageStatus;
-  date: string;
-  lat: number;
-  lng: number;
-}
-
-export interface OutageMapData {
-  center: { lat: number; lng: number };
-  zoom: number;
-  outages: OutagePin[];
-}
-
-export interface ParseOutageMapResult {
-  data: OutageMapData | null;
-  errors: string[];
-}
+export type OutageStatus = 'Active' | 'Planned' | 'Restored';
 
 export interface CustomerNotificationPageFields {
   Title: Field<string>;
-  OutageLocation: Field<string>;
+  Location: Field<string>;
   OutageDate: Field<string>;
   OutageSummary: Field<string>;
   OutageDescription: RichTextField;
-  OutageMap: Field<string>;
+  OutageStatus: Field<OutageStatus>;
+  OutageMap: ImageField;
   Banner: Field<boolean>;
 }
 
