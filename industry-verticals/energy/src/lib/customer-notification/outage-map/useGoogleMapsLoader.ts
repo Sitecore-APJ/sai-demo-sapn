@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 
 type LoaderState = 'idle' | 'loading' | 'ready' | 'error';
 
+type GoogleMapsAuthWindow = Window & {
+  gm_authFailure?: () => void;
+};
+
 function getMapsConfigurationError(): string | null {
   if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
     return 'Google Maps API key is not configured. Set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY in your environment.';
@@ -50,8 +54,9 @@ export function useGoogleMapsLoader() {
       version: 'weekly',
     });
 
-    const previousAuthFailureHandler = window.gm_authFailure;
-    window.gm_authFailure = () => {
+    const mapsWindow = window as GoogleMapsAuthWindow;
+    const previousAuthFailureHandler = mapsWindow.gm_authFailure;
+    mapsWindow.gm_authFailure = () => {
       if (!cancelled) {
         setState('error');
         setError(
@@ -79,7 +84,7 @@ export function useGoogleMapsLoader() {
 
     return () => {
       cancelled = true;
-      window.gm_authFailure = previousAuthFailureHandler;
+      mapsWindow.gm_authFailure = previousAuthFailureHandler;
     };
   }, []);
 
