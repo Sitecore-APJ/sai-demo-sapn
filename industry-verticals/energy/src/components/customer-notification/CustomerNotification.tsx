@@ -7,7 +7,12 @@ import {
   CustomerNotificationGQLFields,
   CustomerNotificationPageFields,
 } from '@/types/customer-notification';
-import { DateField, Text as ContentSdkText, useSitecore } from '@sitecore-content-sdk/nextjs';
+import {
+  DateField,
+  Field,
+  Text as ContentSdkText,
+  useSitecore,
+} from '@sitecore-content-sdk/nextjs';
 import { Calendar, MapPin } from 'lucide-react';
 import { newsDateFormatter } from '@/helpers/dateHelper';
 import { OutageMap } from '@/lib/customer-notification/outage-map/OutageMap';
@@ -62,6 +67,7 @@ export const Default = ({ params, fields }: CustomerNotificationProps) => {
     typeof outageMapValue === 'string' ? outageMapValue : undefined
   );
   const showContent = hasDatasourceContent(datasource) || isPageEditing;
+  const outageDateField: Field<string> = datasource?.outageDate?.jsonValue ?? { value: '' };
 
   if (!showContent && !isPageEditing) {
     return null;
@@ -89,12 +95,8 @@ export const Default = ({ params, fields }: CustomerNotificationProps) => {
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4 shrink-0" aria-hidden />
                 <DateField
-                  field={datasource?.outageDate?.jsonValue}
-                  render={(date) => (
-                    <span>
-                      {newsDateFormatter(date) ?? datasource?.outageDate?.jsonValue?.value}
-                    </span>
-                  )}
+                  field={outageDateField}
+                  render={(date) => <span>{newsDateFormatter(date) ?? outageDateField.value}</span>}
                 />
               </div>
             )}
