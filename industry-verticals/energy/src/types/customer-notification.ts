@@ -31,7 +31,7 @@ export interface CustomerNotificationPageFields {
   OutageDate: Field<string>;
   OutageSummary: Field<string>;
   OutageDescription: RichTextField;
-  OutageLocationPinOnMap: Field<string>;
+  OutageMap: Field<string>;
   Banner: Field<boolean>;
 }
 

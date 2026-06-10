@@ -30,7 +30,7 @@ function hasPageContent(pageFields: CustomerNotificationPageFields | undefined):
     pageFields.OutageDate?.value ||
     pageFields.OutageSummary?.value ||
     hasRichTextContent(pageFields.OutageDescription) ||
-    pageFields.OutageLocationPinOnMap?.value
+    pageFields.OutageMap?.value
   );
 }
 
@@ -112,8 +112,8 @@ export const Default = ({ params, fields }: CustomerNotificationProps) => {
         <section aria-label="Outage map" className="space-y-4">
           <h2 className="text-xl font-semibold">Outage map</h2>
           <div className="text-foreground-light space-y-1 text-sm">
-            <p className="font-medium">Outage location pin on map</p>
-            <ContentSdkText field={pageFields?.OutageLocationPinOnMap} tag="p" />
+            <p className="font-medium">Outage map</p>
+            <ContentSdkText field={pageFields?.OutageMap} tag="p" />
           </div>
           <OutageMap
             data={mapParseResult.data}

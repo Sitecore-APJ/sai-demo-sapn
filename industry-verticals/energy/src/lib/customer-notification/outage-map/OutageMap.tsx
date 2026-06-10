@@ -153,7 +153,7 @@ export function OutageMap({ data, parseErrors = [], isEditing = false }: OutageM
       return (
         <MapStateMessage
           title="Outage map"
-          message="Add outage pin lines to the Outage Map field to display the map."
+          message='Add coordinates to the Outage Map field (e.g. "-34.9285, 138.6007") to display the map.'
         />
       );
     }

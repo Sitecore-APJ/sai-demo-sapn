@@ -13,7 +13,7 @@ const mockFields: CustomerNotificationPageFields = {
     1
   ),
   OutageDescription: createRichTextField(2),
-  OutageLocationPinOnMap: createTextField('-34.9285, 138.6007', 1),
+  OutageMap: createTextField('-34.9285, 138.6007', 1),
   Banner: { value: true },
 };
 

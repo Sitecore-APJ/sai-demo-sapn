@@ -58,7 +58,7 @@ Languages:
       Hint: Location
       Value: Adelaide CBD and North Adelaide
     - ID: "aa010101-0101-4001-8001-000000000003"
-      Hint: OutageLocationPinOnMap
+      Hint: OutageMap
       Value: "-34.9285, 138.6007"
     - ID: "aa010101-0101-4001-8001-000000000005"
       Hint: OutageSummary

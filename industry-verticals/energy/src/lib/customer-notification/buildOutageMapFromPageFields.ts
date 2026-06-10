@@ -39,7 +39,7 @@ function parseCoordinates(
 export function buildOutageMapFromPageFields(
   fields: CustomerNotificationPageFields | undefined
 ): ParseOutageMapResult {
-  const parsed = parseCoordinates(fields?.OutageLocationPinOnMap?.value);
+  const parsed = parseCoordinates(fields?.OutageMap?.value);
 
   if (!parsed) {
     return { data: null, errors: [] };
