@@ -3,6 +3,10 @@ ID: "e0aff0e0-2345-6789-7890-c9d0e1f2a3b4"
 Parent: "e4a4f5f9-b8de-4db9-92bf-213494fd9bc1"
 Template: "7ee0975b-0698-493e-b3a2-0b2ef33d0522"
 Path: "/sitecore/layout/Renderings/Project/industry-verticals/Customer Notification"
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/sign_warning.png
 Languages:
 - Language: en
   Versions:
