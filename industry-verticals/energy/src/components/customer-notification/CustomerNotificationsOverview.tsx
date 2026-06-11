@@ -66,10 +66,6 @@ export const Default = ({ params, fields }: CustomerNotificationsOverviewProps) 
     [notifications]
   );
 
-  if (notifications.length === 0 && !isPageEditing) {
-    return null;
-  }
-
   return (
     <div className={`customer-notifications-overview w-full ${styles ?? ''}`} id={id}>
       <div className="container space-y-6 py-8">
@@ -80,7 +76,7 @@ export const Default = ({ params, fields }: CustomerNotificationsOverviewProps) 
           </p>
         </header>
 
-        <div className="bg-background-muted inline-flex gap-1 rounded-lg p-1" role="tablist">
+        <div className="bg-background-accent inline-flex gap-1 rounded-lg p-1" role="tablist">
           <TabButton
             active={activeTab === 'active'}
             label="Active"

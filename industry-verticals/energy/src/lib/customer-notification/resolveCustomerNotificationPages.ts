@@ -6,8 +6,16 @@ import {
 
 const VALID_OUTAGE_STATUSES: OutageStatus[] = ['Active', 'Planned', 'Restored', 'Archived'];
 
-function toStringFieldValue(value: string | number | undefined): string | undefined {
-  return typeof value === 'string' ? value : undefined;
+function toStringFieldValue(value: unknown): string | undefined {
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (typeof value === 'number') {
+    return String(value);
+  }
+
+  return undefined;
 }
 
 function parseOutageStatus(value: string | undefined): OutageStatus | undefined {

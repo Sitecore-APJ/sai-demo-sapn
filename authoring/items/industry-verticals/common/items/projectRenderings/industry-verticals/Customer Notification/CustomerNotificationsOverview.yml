@@ -18,30 +18,29 @@ SharedFields:
       $language: String!
     ) {
       contextItem: item(path: $contextItem, language: $language) {
-        children(
-          first: 50
-          includeTemplateIDs: "c3a8f1e24b5d6c7e8f90a1b2c3d4e5f6"
-        ) {
+        children(first: 50) {
           results {
-            id
-            name
-            url {
-              path
-            }
-            title: field(name: "Title") {
-              jsonValue
-            }
-            location: field(name: "Location") {
-              jsonValue
-            }
-            outageDate: field(name: "OutageDate") {
-              jsonValue
-            }
-            outageSummary: field(name: "OutageSummary") {
-              jsonValue
-            }
-            outageStatus: field(name: "OutageStatus") {
-              jsonValue
+            ... on CustomerNotificationPage {
+              id
+              name
+              url {
+                path
+              }
+              title {
+                jsonValue
+              }
+              location {
+                jsonValue
+              }
+              outageDate {
+                jsonValue
+              }
+              outageSummary {
+                jsonValue
+              }
+              outageStatus {
+                jsonValue
+              }
             }
           }
         }
