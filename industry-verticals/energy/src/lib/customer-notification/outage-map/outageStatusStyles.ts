@@ -1,4 +1,4 @@
-export type OutageMapStatus = 'active' | 'planned' | 'restored';
+export type OutageMapStatus = 'active' | 'planned' | 'restored' | 'archived';
 
 export interface OutageStatusStyle {
   fillColor: string;
@@ -30,6 +30,13 @@ export const OUTAGE_STATUS_STYLES: Record<OutageMapStatus, OutageStatusStyle> = 
     pinBorderColor: '#166534',
     overlayLegendLabel: 'Restored boundary',
   },
+  archived: {
+    fillColor: '#6B7280',
+    strokeColor: '#6B7280',
+    pinColor: '#6B7280',
+    pinBorderColor: '#374151',
+    overlayLegendLabel: 'Archived boundary',
+  },
 };
 
 /**
@@ -40,7 +47,7 @@ export const OUTAGE_STATUS_STYLES: Record<OutageMapStatus, OutageStatusStyle> = 
 export function normalizeOutageMapStatus(value: string | undefined): OutageMapStatus {
   const normalized = value?.trim()?.toLowerCase();
 
-  if (normalized === 'planned' || normalized === 'restored') {
+  if (normalized === 'planned' || normalized === 'restored' || normalized === 'archived') {
     return normalized;
   }
 

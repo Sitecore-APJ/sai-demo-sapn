@@ -10,6 +10,7 @@ const mockFields: CustomerNotificationsOverviewGQLFields = {
         results: [
           {
             id: 'notification-1',
+            name: 'Adelaide CBD Planned Outage',
             url: { path: '/customer-notifications/adelaide-cbd-planned-outage' },
             title: { jsonValue: { value: 'Adelaide CBD Planned Outage' } },
             location: { jsonValue: { value: 'Adelaide CBD and North Adelaide' } },
@@ -20,10 +21,10 @@ const mockFields: CustomerNotificationsOverviewGQLFields = {
               },
             },
             outageStatus: { jsonValue: { value: 'Planned' } },
-            notificationStatus: { jsonValue: { value: 'Active' } },
           },
           {
             id: 'notification-2',
+            name: 'North Adelaide Restored Outage',
             url: { path: '/customer-notifications/north-adelaide-restored-outage' },
             title: { jsonValue: { value: 'North Adelaide Restored Outage' } },
             location: { jsonValue: { value: 'North Adelaide' } },
@@ -31,8 +32,7 @@ const mockFields: CustomerNotificationsOverviewGQLFields = {
             outageSummary: {
               jsonValue: { value: 'Archived outage notification for North Adelaide.' },
             },
-            outageStatus: { jsonValue: { value: 'Restored' } },
-            notificationStatus: { jsonValue: { value: 'Archived' } },
+            outageStatus: { jsonValue: { value: 'Archived' } },
           },
         ],
       },

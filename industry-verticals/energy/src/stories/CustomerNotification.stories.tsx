@@ -14,7 +14,6 @@ const mockFields: CustomerNotificationPageFields = {
   ),
   OutageDescription: createRichTextField(2),
   OutageStatus: { value: 'Planned' },
-  NotificationStatus: { value: 'Active' },
   OutageMap: { value: {} },
   Banner: { value: true },
 };

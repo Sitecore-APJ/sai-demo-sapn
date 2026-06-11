@@ -24,6 +24,7 @@ SharedFields:
         ) {
           results {
             id
+            name
             url {
               path
             }
@@ -40,9 +41,6 @@ SharedFields:
               jsonValue
             }
             outageStatus: field(name: "OutageStatus") {
-              jsonValue
-            }
-            notificationStatus: field(name: "NotificationStatus") {
               jsonValue
             }
           }

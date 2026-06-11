@@ -6,6 +6,7 @@ export function outageStatusBadgeAttribute(status: OutageStatus | undefined): st
     case 'Planned':
       return 'planned';
     case 'Restored':
+    case 'Archived':
       return 'restored';
     case 'Active':
     default:

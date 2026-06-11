@@ -2,9 +2,7 @@ import { Field, ImageField, RichTextField } from '@sitecore-content-sdk/nextjs';
 import { SitecoreItem } from './common';
 import { IGQLTextField } from './igql';
 
-export type OutageStatus = 'Active' | 'Planned' | 'Restored';
-
-export type NotificationStatus = 'Active' | 'Archived';
+export type OutageStatus = 'Active' | 'Planned' | 'Restored' | 'Archived';
 
 export interface CustomerNotificationPageFields {
   Title: Field<string>;
@@ -13,7 +11,6 @@ export interface CustomerNotificationPageFields {
   OutageSummary: Field<string>;
   OutageDescription: RichTextField;
   OutageStatus: Field<OutageStatus>;
-  NotificationStatus: Field<NotificationStatus>;
   OutageMap: ImageField;
   Banner: Field<boolean>;
 }
@@ -65,19 +62,18 @@ export interface CustomerNotificationPageSummary {
   outageDate?: string;
   outageSummary?: string;
   outageStatus?: OutageStatus;
-  notificationStatus: NotificationStatus;
   url?: string;
 }
 
 export interface CustomerNotificationPageGQL {
   id: string;
+  name?: string;
   url?: { path: string };
   title: IGQLTextField;
   location: IGQLTextField;
   outageDate: { jsonValue: Field<string> };
   outageSummary: IGQLTextField;
   outageStatus: IGQLTextField;
-  notificationStatus: IGQLTextField;
 }
 
 export interface CustomerNotificationsOverviewGQLFields {

@@ -3,7 +3,8 @@
 import { ComponentProps } from '@/lib/component-props';
 import { NotificationsOverviewMap } from '@/lib/customer-notification/notifications-overview/NotificationsOverviewMap';
 import {
-  filterNotificationsByStatus,
+  filterActiveNotifications,
+  filterArchivedNotifications,
   resolveCustomerNotificationPages,
 } from '@/lib/customer-notification/resolveCustomerNotificationPages';
 import { CustomerNotificationsOverviewGQLFields } from '@/types/customer-notification';
@@ -57,11 +58,11 @@ export const Default = ({ params, fields }: CustomerNotificationsOverviewProps) 
   );
 
   const activeNotifications = useMemo(
-    () => filterNotificationsByStatus(notifications, 'Active'),
+    () => filterActiveNotifications(notifications),
     [notifications]
   );
   const archivedNotifications = useMemo(
-    () => filterNotificationsByStatus(notifications, 'Archived'),
+    () => filterArchivedNotifications(notifications),
     [notifications]
   );
 
@@ -105,7 +106,7 @@ export const Default = ({ params, fields }: CustomerNotificationsOverviewProps) 
               <h2 className="text-xl font-semibold">Active notifications</h2>
               <NotificationList
                 notifications={activeNotifications}
-                emptyMessage="No active customer notifications. Create a notification page and set Notification Status to Active."
+                emptyMessage="No active customer notifications. Create a notification page with an Outage Status other than Archived."
               />
             </section>
           </div>
@@ -114,7 +115,7 @@ export const Default = ({ params, fields }: CustomerNotificationsOverviewProps) 
             <h2 className="text-xl font-semibold">Archived notifications</h2>
             <NotificationList
               notifications={archivedNotifications}
-              emptyMessage="No archived customer notifications. Set Notification Status to Archived on a notification page to move it here."
+              emptyMessage="No archived customer notifications. Set Outage Status to Archived on a notification page to move it here."
             />
           </section>
         )}

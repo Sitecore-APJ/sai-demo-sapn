@@ -24,9 +24,6 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260609T000000Z
-    - ID: "aa010101-0101-4001-8001-000000000008"
-      Hint: NotificationStatus
-      Value: Active
     - ID: "aa010101-0101-4001-8001-000000000010"
       Hint: Title
       Value: $name
