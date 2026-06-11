@@ -63,19 +63,19 @@ function NotificationBannerAlert({ content }: { content: BannerContent }) {
 
 /**
  * Sitecore rendering that shows the latest active update banner when enabled on the page.
- * @param {NotificationBannerProps} props - Component props from XM Cloud datasource query
+ * @param {NotificationBannerProps} props - Component props from XM Cloud context item query
  * @returns {JSX.Element | null} The notification banner or an editing placeholder
  */
 export const Default = ({ params, fields }: NotificationBannerProps) => {
   const { page } = useSitecore();
   const isPageEditing = page.mode.isEditing;
   const { styles, RenderingIdentifier: id } = params;
-  const gqlDatasource = fields?.data?.datasource;
+  const contextItem = fields?.data?.contextItem;
   const pageFields = page.layout.sitecore.route?.fields as
     | CustomerNotificationPageFields
     | undefined;
   const showLatestUpdateBanner = isCheckboxFieldEnabled(
-    gqlDatasource?.banner?.jsonValue?.value ?? pageFields?.Banner?.value
+    contextItem?.banner?.jsonValue?.value ?? pageFields?.Banner?.value
   );
 
   const bannerContent = selectBannerContent(

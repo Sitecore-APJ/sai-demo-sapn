@@ -5,7 +5,7 @@ import { NotificationBannerGQLFields } from '@/types/customer-notification';
 
 const mockFields: NotificationBannerGQLFields = {
   data: {
-    datasource: {
+    contextItem: {
       banner: { jsonValue: { value: true } },
       children: {
         results: [
@@ -67,8 +67,8 @@ export const BannerDisabled: Story = {
     },
     fields: {
       data: {
-        datasource: {
-          ...mockFields.data.datasource!,
+        contextItem: {
+          ...mockFields.data.contextItem!,
           banner: { jsonValue: { value: false } },
         },
       },

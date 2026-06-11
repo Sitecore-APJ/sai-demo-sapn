@@ -37,18 +37,14 @@ export interface UpdateItemGQL {
   updateStatus: IGQLTextField;
 }
 
-export interface NotificationBannerChildrenGQL {
-  children: { results: UpdateItemGQL[] };
-}
-
-export interface NotificationBannerDatasourceGQL extends NotificationBannerChildrenGQL {
+export interface NotificationBannerContextItemGQL {
   banner: { jsonValue: Field<boolean> };
+  children: { results: UpdateItemGQL[] };
 }
 
 export interface NotificationBannerGQLFields {
   data: {
-    datasource?: NotificationBannerDatasourceGQL;
-    contextItem?: NotificationBannerChildrenGQL;
+    contextItem?: NotificationBannerContextItemGQL;
   };
 }
 

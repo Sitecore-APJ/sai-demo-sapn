@@ -14,11 +14,10 @@ SharedFields:
   Hint: ComponentQuery
   Value: |
     query NotificationBannerQuery(
-      $datasource: String!
       $contextItem: String!
       $language: String!
     ) {
-      datasource: item(path: $datasource, language: $language) {
+      contextItem: item(path: $contextItem, language: $language) {
         banner: field(name: "Banner") {
           jsonValue
         }
@@ -43,32 +42,10 @@ SharedFields:
           }
         }
       }
-      contextItem: item(path: $contextItem, language: $language) {
-        children(
-          first: 20
-          includeTemplateIDs: "a6ebf6a68f9012343456e5f6a7b8c9d0"
-        ) {
-          results {
-            id
-            updateTitle: field(name: "UpdateTitle") {
-              jsonValue
-            }
-            updateMessage: field(name: "UpdateMessage") {
-              jsonValue
-            }
-            updateDateTime: field(name: "UpdateDateTime") {
-              jsonValue
-            }
-            updateStatus: field(name: "UpdateStatus") {
-              jsonValue
-            }
-          }
-        }
-      }
     }
 - ID: "a3411ff6-c978-40aa-b059-a49b9ca2209b"
   Hint: Can select Page as a data source
-  Value: 1
+  Value: 
 - ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
   Hint: __Shared revision
   Value: "d1e2f3a4-b5c6-4d7e-8f9a-0b1c2d3e4f50"
