@@ -96,7 +96,7 @@ export const Default = ({ params, fields }: NotificationBannerProps) => {
       <div className={`notification-banner w-full ${styles ?? ''}`} id={id}>
         <div className="border-border bg-background-muted border-b px-4 py-3 text-center text-sm">
           {showLatestUpdateBanner
-            ? 'Banner hidden — add an active Update Item with a title.'
+            ? 'Banner hidden — add an active Update Item page with a title.'
             : 'Banner hidden — enable Latest Info Banner on the page.'}
         </div>
       </div>

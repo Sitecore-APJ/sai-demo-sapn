@@ -18,6 +18,15 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260609T000000Z
+    - ID: "32c603c2-c858-4138-8fcb-8e18a5ad8240"
+      Hint: metadataTitle
+      Value: Initial outage reported | Adelaide CBD Planned Outage
+    - ID: "4e0720e9-9d50-4ddc-87cf-ecd65e8e94c8"
+      Hint: NavigationTitle
+      Value: Update - Crews on site
+    - ID: "9c8beb3d-e162-4540-bb7d-9504db078f44"
+      Hint: Title
+      Value: Update - Crews on site
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
       Value: "cc030303-0303-4003-8003-000000000003"
@@ -27,6 +36,9 @@ Languages:
     - ID: "bb020202-0202-4002-8002-000000000002"
       Hint: UpdateMessage
       Value: We are aware of an outage affecting Adelaide CBD. Our crews have been dispatched and will provide updates as more information becomes available.
+    - ID: "d3886445-9ee0-46a0-ae5e-8857dd6b395f"
+      Hint: pageSummary
+      Value: Initial outage update for Adelaide CBD planned outage notification.
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
       Value: 20260609T000000Z

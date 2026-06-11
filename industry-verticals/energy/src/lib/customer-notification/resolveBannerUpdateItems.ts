@@ -16,7 +16,7 @@ function filterUpdateItems(items: UpdateItemGQL[] | undefined): UpdateItemGQL[] 
 }
 
 /**
- * Resolves Update Item children from the same integrated GraphQL item used for the banner.
+ * Resolves nested Update Item pages from the same integrated GraphQL item used for the banner.
  * When a datasource item is present, only its children are used (no contextItem fallback).
  */
 export function resolveBannerUpdateItems(

@@ -1,15 +1,23 @@
 ---
 ID: "a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0"
-Parent: "d9fef9d9-1234-5678-6789-b8c9d0e1f2a3"
+Parent: "768648c5-cbd8-45e6-ba18-7282b6ce2894"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
-Path: "/sitecore/templates/Project/industry-verticals/Custom Templates/Customer Notification/UpdateItem"
+Path: "/sitecore/templates/Project/industry-verticals/Pages/UpdateItemPage"
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
   Value: Office/32x32/refresh.png
 - ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
   Hint: __Base template
-  Value: "{1930BBEB-7805-471A-A3BE-4858AC7CF696}"
+  Value: |
+    {47151711-26CA-434E-8132-D3E0B7D26683}
+    {371D5FBB-5498-4D94-AB2B-E3B70EEBE78C}
+    {4414A1F9-826A-4647-8DF4-ED6A95E64C43}
+    {6650FB34-7EA1-4245-A919-5CC0F002A6D7}
+    {F39A594A-7BC9-4DB0-BAA1-88543409C1F9}
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 55
 - ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
   Hint: __Shared revision
   Value: "a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0"
@@ -21,6 +29,10 @@ SharedFields:
   Value: 1
 Languages:
 - Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Update Item Page
   Versions:
   - Version: 1
     Fields:

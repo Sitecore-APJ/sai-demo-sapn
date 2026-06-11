@@ -19,6 +19,7 @@ export type CustomerNotificationPage = SitecoreItem<CustomerNotificationPageFiel
 
 export type UpdateItemStatus = 'Active' | 'Resolved' | 'Cancelled';
 
+/** Fields on the UpdateItemPage nested page template (template ID a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0). */
 export interface UpdateItemFields {
   UpdateTitle: Field<string>;
   UpdateMessage: Field<string>;

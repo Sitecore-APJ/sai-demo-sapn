@@ -2,7 +2,7 @@
 ID: "b7fcf7b7-9012-3456-4567-f6a7b8c9d0e1"
 Parent: "a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0"
 Template: "a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0"
-Path: "/sitecore/templates/Project/industry-verticals/Custom Templates/Customer Notification/UpdateItem/__Standard Values"
+Path: "/sitecore/templates/Project/industry-verticals/Pages/UpdateItemPage/__Standard Values"
 SharedFields:
 - ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
   Hint: __Shared revision
@@ -18,6 +18,9 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260609T000000Z
+    - ID: "9c8beb3d-e162-4540-bb7d-9504db078f44"
+      Hint: Title
+      Value: $name
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
       Value: "b7fcf7b7-9012-3456-4567-f6a7b8c9d0e1"

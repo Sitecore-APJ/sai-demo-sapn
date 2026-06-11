@@ -2,7 +2,7 @@
 ID: "c8fdf8c8-0123-4567-5678-a7b8c9d0e1f2"
 Parent: "a6ebf6a6-8f90-1234-3456-e5f6a7b8c9d0"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
-Path: "/sitecore/templates/Project/industry-verticals/Custom Templates/Customer Notification/UpdateItem/Data"
+Path: "/sitecore/templates/Project/industry-verticals/Pages/UpdateItemPage/Content"
 Languages:
 - Language: en
   Versions:
