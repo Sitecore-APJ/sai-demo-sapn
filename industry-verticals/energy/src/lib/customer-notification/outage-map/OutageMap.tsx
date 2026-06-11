@@ -5,7 +5,7 @@ import { ImageField, NextImage as ContentSdkImage } from '@sitecore-content-sdk/
 import { createOutageCenterPin } from '@/lib/customer-notification/outage-map/createOutageCenterPin';
 import {
   geocodeLocationOverlays,
-  LocationOverlayBounds,
+  LocationOverlay,
 } from '@/lib/customer-notification/outage-map/geocodeLocationOverlays';
 import { hasOutageMapImage } from '@/lib/customer-notification/outage-map/hasOutageMapImage';
 import { OutageMapLegend } from '@/lib/customer-notification/outage-map/OutageMapLegend';
@@ -43,9 +43,7 @@ function MapStateMessage({
   );
 }
 
-function unionOverlayBounds(
-  overlays: LocationOverlayBounds[]
-): google.maps.LatLngBoundsLiteral | null {
+function unionOverlayBounds(overlays: LocationOverlay[]): google.maps.LatLngBoundsLiteral | null {
   if (overlays.length === 0) {
     return null;
   }
@@ -84,14 +82,14 @@ export function OutageMap({
   const statusStyle = getOutageStatusStyle(outageStatus);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<google.maps.Map | null>(null);
-  const overlaysRef = useRef<google.maps.Rectangle[]>([]);
+  const overlaysRef = useRef<google.maps.Polygon[]>([]);
   const markersRef = useRef<google.maps.marker.AdvancedMarkerElement[]>([]);
   const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
   const { state, error, mapsApi, markerLibrary } = useGoogleMapsLoader();
   const mapId = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || DEFAULT_MAP_ID;
   const [overlayState, setOverlayState] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
   const [overlayErrors, setOverlayErrors] = useState<string[]>([]);
-  const [locationOverlays, setLocationOverlays] = useState<LocationOverlayBounds[]>([]);
+  const [locationOverlays, setLocationOverlays] = useState<LocationOverlay[]>([]);
   const showUploadedImage = hasOutageMapImage(mapImage);
   const hasLocationQuery = Boolean(locationQuery?.trim());
 
@@ -174,17 +172,19 @@ export function OutageMap({
     const overlayStyle = getOutageStatusStyle(outageStatus);
 
     locationOverlays.forEach((overlay) => {
-      const rectangle = new mapsApi.Rectangle({
-        bounds: overlay.bounds,
-        map: mapRef.current,
-        fillColor: overlayStyle.fillColor,
-        fillOpacity: 0.35,
-        strokeColor: overlayStyle.strokeColor,
-        strokeOpacity: 0.85,
-        strokeWeight: 2,
-      });
+      overlay.polygonGroups.forEach((paths) => {
+        const polygon = new mapsApi.Polygon({
+          paths,
+          map: mapRef.current,
+          fillColor: overlayStyle.fillColor,
+          fillOpacity: 0.35,
+          strokeColor: overlayStyle.strokeColor,
+          strokeOpacity: 0.9,
+          strokeWeight: 2,
+        });
 
-      overlaysRef.current.push(rectangle);
+        overlaysRef.current.push(polygon);
+      });
 
       const marker = new AdvancedMarkerElement({
         map: mapRef.current,

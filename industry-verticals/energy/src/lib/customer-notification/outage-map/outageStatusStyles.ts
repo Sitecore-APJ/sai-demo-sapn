@@ -14,21 +14,21 @@ export const OUTAGE_STATUS_STYLES: Record<OutageMapStatus, OutageStatusStyle> = 
     strokeColor: '#DC2626',
     pinColor: '#DC2626',
     pinBorderColor: '#7F1D1D',
-    overlayLegendLabel: 'Active outage area',
+    overlayLegendLabel: 'Active outage boundary',
   },
   planned: {
     fillColor: '#D97706',
     strokeColor: '#D97706',
     pinColor: '#D97706',
     pinBorderColor: '#92400E',
-    overlayLegendLabel: 'Planned outage area',
+    overlayLegendLabel: 'Planned outage boundary',
   },
   restored: {
     fillColor: '#16A34A',
     strokeColor: '#16A34A',
     pinColor: '#16A34A',
     pinBorderColor: '#166534',
-    overlayLegendLabel: 'Restored area',
+    overlayLegendLabel: 'Restored boundary',
   },
 };
 
