@@ -2,6 +2,7 @@
 
 import { ComponentProps } from '@/lib/component-props';
 import { isCheckboxFieldEnabled } from '@/lib/customer-notification/isCheckboxFieldEnabled';
+import { resolveBannerUpdateItems } from '@/lib/customer-notification/resolveBannerUpdateItems';
 import { selectBannerContent } from '@/lib/customer-notification/selectBannerUpdate';
 import {
   BannerContent,
@@ -69,15 +70,18 @@ export const Default = ({ params, fields }: NotificationBannerProps) => {
   const { page } = useSitecore();
   const isPageEditing = page.mode.isEditing;
   const { styles, RenderingIdentifier: id } = params;
-  const datasource = fields?.data?.datasource ?? fields?.data?.contextItem;
+  const gqlDatasource = fields?.data?.datasource;
   const pageFields = page.layout.sitecore.route?.fields as
     | CustomerNotificationPageFields
     | undefined;
   const showLatestUpdateBanner = isCheckboxFieldEnabled(
-    datasource?.banner?.jsonValue?.value ?? pageFields?.Banner?.value
+    gqlDatasource?.banner?.jsonValue?.value ?? pageFields?.Banner?.value
   );
 
-  const bannerContent = selectBannerContent(datasource?.children?.results, showLatestUpdateBanner);
+  const bannerContent = selectBannerContent(
+    resolveBannerUpdateItems(fields),
+    showLatestUpdateBanner
+  );
 
   if (bannerContent) {
     return (

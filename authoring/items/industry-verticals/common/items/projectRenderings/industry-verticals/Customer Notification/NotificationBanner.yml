@@ -13,27 +13,54 @@ SharedFields:
 - ID: "17bb046a-a32a-41b3-8315-81217947611b"
   Hint: ComponentQuery
   Value: |
-    query NotificationBannerQuery($datasource: String!, $language: String!) {
+    query NotificationBannerQuery(
+      $datasource: String!
+      $contextItem: String!
+      $language: String!
+    ) {
       datasource: item(path: $datasource, language: $language) {
         banner: field(name: "Banner") {
           jsonValue
         }
-        children {
+        children(
+          first: 20
+          includeTemplateIDs: "a6ebf6a68f9012343456e5f6a7b8c9d0"
+        ) {
           results {
-            ... on UpdateItem {
-              id
-              updateTitle {
-                jsonValue
-              }
-              updateMessage {
-                jsonValue
-              }
-              updateDateTime {
-                jsonValue
-              }
-              updateStatus {
-                jsonValue
-              }
+            id
+            updateTitle: field(name: "UpdateTitle") {
+              jsonValue
+            }
+            updateMessage: field(name: "UpdateMessage") {
+              jsonValue
+            }
+            updateDateTime: field(name: "UpdateDateTime") {
+              jsonValue
+            }
+            updateStatus: field(name: "UpdateStatus") {
+              jsonValue
+            }
+          }
+        }
+      }
+      contextItem: item(path: $contextItem, language: $language) {
+        children(
+          first: 20
+          includeTemplateIDs: "a6ebf6a68f9012343456e5f6a7b8c9d0"
+        ) {
+          results {
+            id
+            updateTitle: field(name: "UpdateTitle") {
+              jsonValue
+            }
+            updateMessage: field(name: "UpdateMessage") {
+              jsonValue
+            }
+            updateDateTime: field(name: "UpdateDateTime") {
+              jsonValue
+            }
+            updateStatus: field(name: "UpdateStatus") {
+              jsonValue
             }
           }
         }
