@@ -11,12 +11,6 @@
         "allowedPushOperations": "CreateAndUpdate"
       },
       {
-        "name": "energy-media",
-        "path": "/sitecore/content/industry-verticals/gridwell/Media",
-        "scope": "DescendantsOnly",
-        "allowedPushOperations": "CreateAndUpdate"
-      },
-      {
         "name": "energy-data",
         "path": "/sitecore/content/industry-verticals/gridwell/Data",
         "scope": "DescendantsOnly",
