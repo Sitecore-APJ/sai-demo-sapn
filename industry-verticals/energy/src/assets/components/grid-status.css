@@ -24,4 +24,8 @@
   &[data-status='active'] {
     @apply text-background bg-danger;
   }
+
+  &[data-status='planned'] {
+    @apply text-background bg-warning;
+  }
 }

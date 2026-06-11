@@ -4,9 +4,27 @@ Parent: "a3a58074-c4b7-478b-b0b4-386243e7e48e"
 Template: "98e60957-0783-4a9a-85cc-77dad30e9711"
 Path: "/sitecore/content/industry-verticals/gridwell/Home/Customer Notifications"
 SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {C3A8F1E2-4B5D-6C7E-8F90-A1B2C3D4E5F6}
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
   Value: 275
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{DD040404-0404-4004-8004-000000000010}"
+          s:id="{C4D5E6F7-A8B9-4012-C3D4-E5F6A7B80921}"
+          s:par="GridParameters&amp;FieldNames&amp;Styles&amp;RenderingIdentifier&amp;CSSStyles&amp;DynamicPlaceholderId=1"
+          s:ph="headless-main" />
+      </d>
+    </r>
 Languages:
 - Language: en
   Versions:

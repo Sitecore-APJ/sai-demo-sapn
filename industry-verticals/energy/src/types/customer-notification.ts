@@ -4,6 +4,8 @@ import { IGQLTextField } from './igql';
 
 export type OutageStatus = 'Active' | 'Planned' | 'Restored';
 
+export type NotificationStatus = 'Active' | 'Archived';
+
 export interface CustomerNotificationPageFields {
   Title: Field<string>;
   Location: Field<string>;
@@ -11,6 +13,7 @@ export interface CustomerNotificationPageFields {
   OutageSummary: Field<string>;
   OutageDescription: RichTextField;
   OutageStatus: Field<OutageStatus>;
+  NotificationStatus: Field<NotificationStatus>;
   OutageMap: ImageField;
   Banner: Field<boolean>;
 }
@@ -53,4 +56,34 @@ export interface BannerContent {
   message: string;
   status?: UpdateItemStatus;
   dateTime?: string;
+}
+
+export interface CustomerNotificationPageSummary {
+  id: string;
+  title: string;
+  location?: string;
+  outageDate?: string;
+  outageSummary?: string;
+  outageStatus?: OutageStatus;
+  notificationStatus: NotificationStatus;
+  url?: string;
+}
+
+export interface CustomerNotificationPageGQL {
+  id: string;
+  url?: { path: string };
+  title: IGQLTextField;
+  location: IGQLTextField;
+  outageDate: { jsonValue: Field<string> };
+  outageSummary: IGQLTextField;
+  outageStatus: IGQLTextField;
+  notificationStatus: IGQLTextField;
+}
+
+export interface CustomerNotificationsOverviewGQLFields {
+  data: {
+    contextItem?: {
+      children: { results: CustomerNotificationPageGQL[] };
+    };
+  };
 }
