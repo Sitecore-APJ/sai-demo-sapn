@@ -1,0 +1,23 @@
+---
+ID: "329bd0fd-2c12-4317-8bf1-ad85ec242b49"
+Parent: "24618f40-a239-4d36-a9f0-bc9847b2ff5c"
+Template: "24618f40-a239-4d36-a9f0-bc9847b2ff5c"
+Path: "/sitecore/templates/Project/industry-verticals/Components/Page Content/Carousel/Rendering Parameters/Carousel Parameters/__Standard Values"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250612T120000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "f1b2c3d4-e5f6-4789-a012-3456789abc14"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250612T120000Z

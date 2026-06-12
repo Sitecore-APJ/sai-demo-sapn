@@ -1,0 +1,37 @@
+---
+ID: "a0b1c2d3-e4f5-4678-9abc-def012345606"
+Parent: "9ce8f2bc-c650-498e-82aa-b32665438c94"
+Template: "76da0a8d-fc7e-42b2-af1e-205b49e43f98"
+Path: "/sitecore/content/industry-verticals/gridwell/Presentation/Available Renderings/Search"
+SharedFields:
+- ID: "715ae6c0-71c8-4744-ab4f-65362d20ad65"
+  Hint: Renderings
+  Value: |
+    {60C9D163-2898-49E3-A3B4-60F8E743062A}
+    {21111111-1111-4111-8111-111111111101}
+    {21111111-1111-4111-8111-111111111102}
+    {21111111-1111-4111-8111-111111111103}
+    {21111111-1111-4111-8111-111111111104}
+    {21111111-1111-4111-8111-111111111105}
+    {21111111-1111-4111-8111-111111111106}
+    {21111111-1111-4111-8111-111111111107}
+    {21111111-1111-4111-8111-111111111108}
+    {21111111-1111-4111-8111-111111111109}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250612T120000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "rev-available-renderings-search"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250612T120000Z

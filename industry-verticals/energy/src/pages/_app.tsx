@@ -6,6 +6,7 @@ import { SitecorePageProps } from '@sitecore-content-sdk/nextjs';
 import scConfig from 'sitecore.config';
 import 'assets/main.css';
 import { Environment, PageController, WidgetsProvider } from '@sitecore-search/react';
+import { SearchContextProvider } from '@/context/SearchContext';
 
 const SEARCH_CONFIG = {
   env: process.env.NEXT_PUBLIC_SEARCH_ENV,
@@ -43,7 +44,9 @@ function App({ Component, pageProps }: AppProps<SitecorePageProps>): JSX.Element
           apiKey={SEARCH_CONFIG.apiKey}
           publicSuffix={true}
         >
-          <Component {...rest} />
+          <SearchContextProvider>
+            <Component {...rest} />
+          </SearchContextProvider>
         </WidgetsProvider>
       </I18nProvider>
     </>

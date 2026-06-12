@@ -1,0 +1,27 @@
+---
+ID: "5e91a768-4970-41a8-8d50-7a6388fa7dbb"
+Parent: "73e39020-40fe-4dd4-9b84-1aa3e5c9ebda"
+Template: "73e39020-40fe-4dd4-9b84-1aa3e5c9ebda"
+Path: "/sitecore/templates/Project/industry-verticals/Components/Page Content/Accordion/Accordion Item/__Standard Values"
+SharedFields:
+- ID: "fd4e2050-186c-4375-8b99-e8a85dd7436e"
+  Hint: __Enable item fallback
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250612T120000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "b1b2c3d4-e5f6-4789-a012-3456789abc11"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250612T120000Z

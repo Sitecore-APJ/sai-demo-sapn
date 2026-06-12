@@ -1,0 +1,29 @@
+---
+ID: "07890123-4567-8901-2345-678901234def"
+Parent: "e5f67890-1234-5678-9012-345678901bcd"
+Template: "73e39020-40fe-4dd4-9b84-1aa3e5c9ebda"
+Path: "/sitecore/content/industry-verticals/gridwell/Data/Accordions/Outage FAQ/How long will power be restored"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250612T120000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "demo-faq-item-2-rev"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250612T120000Z
+    - ID: "c3b52fbc-edf4-46e4-9a8d-bb939960d7a0"
+      Hint: Title
+      Value: How long will it take to restore power?
+    - ID: "3f1f7cf7-31f7-4564-b311-64bd7c5417a0"
+      Hint: Content
+      Value: <p>Restoration times vary based on cause and location. Check the customer notifications page for the latest estimated restoration time.</p>

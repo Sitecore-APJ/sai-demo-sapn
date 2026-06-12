@@ -1,0 +1,23 @@
+---
+ID: "8db81626-a1bc-46a8-81cf-b4b2783e46ad"
+Parent: "e5a4352c-f566-4582-b5d9-fe594f6a9e4d"
+Template: "e5a4352c-f566-4582-b5d9-fe594f6a9e4d"
+Path: "/sitecore/templates/Project/industry-verticals/Components/Page Content/Accordion/Rendering Parameters/Accordion Parameters/__Standard Values"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250612T120000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c1b2c3d4-e5f6-4789-a012-3456789abc04"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250612T120000Z

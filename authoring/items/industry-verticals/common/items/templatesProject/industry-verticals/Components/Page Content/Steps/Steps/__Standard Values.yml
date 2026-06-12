@@ -1,0 +1,33 @@
+---
+ID: "94f31bfa-02a4-437e-a689-c00de276be15"
+Parent: "96db62c5-bcc4-49bc-a56f-a364564a802e"
+Template: "96db62c5-bcc4-49bc-a56f-a364564a802e"
+Path: "/sitecore/templates/Project/industry-verticals/Components/Page Content/Steps/Steps/__Standard Values"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: "{6F9ED4BB-DF09-446E-A155-9BF01D18BC51}"
+- ID: "f7b94d8c-a842-49f8-ab7a-2169d00426b0"
+  Hint: __Should Not Organize In Bucket
+  Value: 1
+- ID: "fd4e2050-186c-4375-8b99-e8a85dd7436e"
+  Hint: __Enable item fallback
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250612T120000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "e1b2c3d4-e5f6-4789-a012-3456789abc10"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250612T120000Z

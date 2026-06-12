@@ -1,0 +1,27 @@
+---
+ID: "df86a1ba-073e-4f45-b5de-d5ea00f4bed6"
+Parent: "3c87d7ea-3deb-4cf5-a0c1-0fc38b27ac5a"
+Template: "3c87d7ea-3deb-4cf5-a0c1-0fc38b27ac5a"
+Path: "/sitecore/templates/Project/industry-verticals/Components/Page Content/Tabs/Tab Item/__Standard Values"
+SharedFields:
+- ID: "fd4e2050-186c-4375-8b99-e8a85dd7436e"
+  Hint: __Enable item fallback
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250612T120000Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d1b2c3d4-e5f6-4789-a012-3456789abc11"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250612T120000Z
