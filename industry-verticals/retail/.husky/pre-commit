@@ -2,12 +2,52 @@
 set -e
 set -o pipefail
 
-# ensure we run from the app folder
-cd "$(git rev-parse --show-toplevel)/industry-verticals/retail"
+ROOT="$(git rev-parse --show-toplevel)"
 
-# (optional) trace
-echo ">> pre-commit running in $(pwd)"
+# Run tsc in each vertical that has staged changes
+STAGED=$(git diff --cached --name-only --diff-filter=ACMR)
+VERTICALS=""
+for path in $STAGED; do
+  case "$path" in
+    industry-verticals/*/*)
+      vertical=$(printf '%s\n' "$path" | cut -d/ -f2)
+      case " $VERTICALS " in
+        *" $vertical "*) ;;
+        *) VERTICALS="$VERTICALS $vertical" ;;
+      esac
+      ;;
+  esac
+done
 
-# run your checks
-npx tsc -p tsconfig.json --noEmit
-npx lint-staged
+if [ -z "$VERTICALS" ]; then
+  VERTICALS="retail"
+fi
+
+echo ">> pre-commit running at $ROOT"
+
+for vertical in $VERTICALS; do
+  APP_DIR="$ROOT/industry-verticals/$vertical"
+  [ -d "$APP_DIR" ] || continue
+  [ -f "$APP_DIR/tsconfig.json" ] || continue
+
+  if [ ! -x "$APP_DIR/node_modules/.bin/tsc" ]; then
+    echo ">> WARN: skipping tsc for $vertical — run: cd industry-verticals/$vertical && npm install"
+    continue
+  fi
+
+  if [ ! -f "$APP_DIR/.sitecore/sites.json" ]; then
+    echo ">> WARN: skipping tsc for $vertical — missing .sitecore/sites.json (run: npm run sitecore-tools:build)"
+    continue
+  fi
+
+  echo ">> Running tsc in industry-verticals/$vertical"
+  (cd "$APP_DIR" && npx tsc -p tsconfig.json --noEmit)
+done
+
+# lint-staged (prettier) — config lives in retail/package.json
+RETAIL="$ROOT/industry-verticals/retail"
+if [ -x "$RETAIL/node_modules/.bin/lint-staged" ]; then
+  (cd "$RETAIL" && npx lint-staged)
+else
+  echo ">> WARN: skipping lint-staged — run: cd industry-verticals/retail && npm install"
+fi
