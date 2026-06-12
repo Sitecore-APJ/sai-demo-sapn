@@ -92,7 +92,7 @@ export const ContentListComponent: React.FC<ContentListProps> = ({ settings }) =
                         />
                       )}
                       {settings.DisplayContentType && content.type && (
-                        <span className="bg-background-muted text-foreground border-border shrink-0 rounded border px-2 py-0.5 text-xs font-medium capitalize">
+                        <span className="border-accent text-accent-dark bg-background-accent border shrink-0 rounded-md px-2 py-0.5 text-xs font-medium capitalize">
                           {content.type}
                         </span>
                       )}
