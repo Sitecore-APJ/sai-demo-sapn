@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import {
   RecommendationInitialState,
   WidgetDataType,
@@ -12,6 +11,7 @@ import type { ContentModel, IRecommendationSettings } from '@/types/search';
 import { applySearchSources } from '@/lib/search/searchQuery';
 import { DEFAULT_IMG_URL } from '@/constants/search';
 import { SearchLink } from '@/components/non-sitecore/search/ui/search-link';
+import { SearchImageFixed } from '@/components/non-sitecore/search/ui/search-image';
 import Spinner from '@/components/non-sitecore/search/Spinner';
 
 type HeroProps = {
@@ -60,12 +60,12 @@ export const PersonalizedHeroComponent: React.FC<HeroProps> = ({ settings, param
               <div className="component-content grid gap-16 md:flex md:flex-row">
                 <div className="relative h-fit overflow-hidden rounded-2xl shadow-2xl">
                   <div className="relative max-w-[500px]">
-                    <Image
+                    <SearchImageFixed
                       src={validImageUrl}
                       alt={content.name}
                       width={500}
                       height={400}
-                      className="h-auto w-full object-cover"
+                      className="h-auto w-full"
                     />
                   </div>
                 </div>

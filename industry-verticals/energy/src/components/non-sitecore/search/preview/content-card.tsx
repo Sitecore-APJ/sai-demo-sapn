@@ -1,11 +1,11 @@
 'use client';
 
-import Image from 'next/image';
 import type { ContentModel, ISearchSettings } from '@/types/search';
 import { DEFAULT_IMG_URL } from '@/constants/search';
 import { FavouriteButton } from '@/components/non-sitecore/search/ui/favorite-button';
 import { Rating } from '@/components/non-sitecore/search/ui/rating';
 import { SearchLink } from '@/components/non-sitecore/search/ui/search-link';
+import { SearchImage } from '@/components/non-sitecore/search/ui/search-image';
 
 export interface ContentCardProps {
   content: ContentModel;
@@ -23,13 +23,7 @@ export const ContentCard = ({ content, settings, itemIndex, className = '' }: Co
       <article className="relative rounded-md p-2">
         {settings.DisplayImage && (
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md md:rounded-xl">
-            <Image
-              src={validImageUrl}
-              alt={name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 33vw"
-            />
+            <SearchImage src={validImageUrl} alt={name} />
           </div>
         )}
         {settings.DisplayContentType && type && (

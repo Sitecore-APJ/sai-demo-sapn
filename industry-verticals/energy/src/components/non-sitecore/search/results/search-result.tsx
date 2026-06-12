@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import { Field, useSitecore } from '@sitecore-content-sdk/nextjs';
 import { LayoutGrid, List, X } from 'lucide-react';
 import {
@@ -27,6 +26,7 @@ import {
   DrawerTitle,
 } from '@/shadcn/components/ui/drawer';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/shadcn/components/ui/card';
+import { SearchImage } from '@/components/non-sitecore/search/ui/search-image';
 import Spinner from '@/components/non-sitecore/search/Spinner';
 
 type ContentResultsProps = {
@@ -224,13 +224,7 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
                     resultView === 'list' ? 'h-40 w-40' : 'aspect-[4/3] w-full'
                   }`}
                 >
-                  <Image
-                    src={validImageUrl}
-                    alt={content.name}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                  />
+                  <SearchImage src={validImageUrl} alt={content.name} fit="contain" />
                 </div>
               )}
               <CardContent className="relative flex flex-col gap-2 py-4">

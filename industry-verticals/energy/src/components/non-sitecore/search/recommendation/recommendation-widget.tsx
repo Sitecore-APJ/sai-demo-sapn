@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,6 +17,7 @@ import { applySearchSources } from '@/lib/search/searchQuery';
 import { DEFAULT_IMG_URL } from '@/constants/search';
 import { SearchLink } from '@/components/non-sitecore/search/ui/search-link';
 import { Card, CardContent } from '@/shadcn/components/ui/card';
+import { SearchImage } from '@/components/non-sitecore/search/ui/search-image';
 import Spinner from '@/components/non-sitecore/search/Spinner';
 
 import 'swiper/css';
@@ -106,13 +106,7 @@ export const RecommendationComponent: React.FC<RecommendationProps> = ({ setting
                 <SwiperSlide key={content.id}>
                   <Card className="border-border m-1 h-[300px] overflow-hidden py-0">
                     <div className="relative h-[180px] w-full">
-                      <Image
-                        src={validImageUrl}
-                        alt={content.name}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 768px) 100vw, 25vw"
-                      />
+                      <SearchImage src={validImageUrl} alt={content.name} fit="contain" />
                     </div>
                     <CardContent className="py-4">
                       <SearchLink

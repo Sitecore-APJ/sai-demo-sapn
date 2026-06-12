@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import Image from 'next/image';
 import {
   WidgetDataType,
   usePreviewSearch,
@@ -16,6 +15,7 @@ import { FavouriteButton } from '@/components/non-sitecore/search/ui/favorite-bu
 import { Rating } from '@/components/non-sitecore/search/ui/rating';
 import { SearchLink } from '@/components/non-sitecore/search/ui/search-link';
 import Spinner from '@/components/non-sitecore/search/Spinner';
+import { SearchImage } from '@/components/non-sitecore/search/ui/search-image';
 
 type InitialState = PreviewSearchInitialState<'itemsPerPage'>;
 
@@ -69,13 +69,7 @@ export const ContentListComponent: React.FC<ContentListProps> = ({ settings }) =
                 <div className="flex flex-row gap-5">
                   {settings.DisplayImage && (
                     <div className="relative size-20 shrink-0 overflow-hidden rounded-full">
-                      <Image
-                        src={validImageUrl}
-                        alt={content.name}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
-                      />
+                      <SearchImage src={validImageUrl} alt={content.name} />
                     </div>
                   )}
                   <div className="flex min-w-0 flex-col gap-0.5">

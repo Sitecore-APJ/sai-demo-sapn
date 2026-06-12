@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import {
   WidgetDataType,
   useSearchResults,
@@ -16,6 +15,7 @@ import { SearchLink } from '@/components/non-sitecore/search/ui/search-link';
 import { FavouriteButton } from '@/components/non-sitecore/search/ui/favorite-button';
 import { Rating } from '@/components/non-sitecore/search/ui/rating';
 import Spinner from '@/components/non-sitecore/search/Spinner';
+import { SearchImage } from '@/components/non-sitecore/search/ui/search-image';
 
 type ContentResultsProps = {
   defaultSortType?: SearchResultsStoreState['sortType'];
@@ -68,13 +68,7 @@ export const SearchListComponent: React.FC<ContentResultsProps> = ({ settings })
                 <div className="flex flex-row gap-5">
                   {settings.DisplayImage && (
                     <div className="relative h-[100px] w-[100px] shrink-0 overflow-hidden">
-                      <Image
-                        src={validImageUrl}
-                        alt={content.name}
-                        fill
-                        className="object-cover"
-                        sizes="100px"
-                      />
+                      <SearchImage src={validImageUrl} alt={content.name} />
                     </div>
                   )}
                   <div className="flex min-w-0 flex-col gap-0.5">
