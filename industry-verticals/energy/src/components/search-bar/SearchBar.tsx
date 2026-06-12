@@ -8,7 +8,7 @@ import { ComponentProps } from '@/lib/component-props';
 import { paramFlag, paramInt } from '@/lib/search/parseSearchParams';
 import { useSearchContext } from '@/context/SearchContext';
 import SearchInput from '@/components/non-sitecore/search/preview/search-input';
-import { Popover, PopoverContent, PopoverTrigger } from '@/shadcn/components/ui/popover';
+import { Popover, PopoverAnchor, PopoverContent } from '@/shadcn/components/ui/popover';
 
 export const Default = (props: ComponentProps) => {
   const router = useRouter();
@@ -92,7 +92,7 @@ export const Default = (props: ComponentProps) => {
     <div className={`${styles} w-full py-5`} id={id || undefined}>
       <div className="component-content">
         <Popover open={isShowingResult} onOpenChange={setIsShowingResult}>
-          <PopoverTrigger asChild>
+          <PopoverAnchor asChild>
             <form onSubmit={handleSearchSubmit} className="w-full">
               <SearchInput
                 name="query"
@@ -102,8 +102,12 @@ export const Default = (props: ComponentProps) => {
                 onFocus={() => setIsShowingResult(true)}
               />
             </form>
-          </PopoverTrigger>
-          <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0" align="start">
+          </PopoverAnchor>
+          <PopoverContent
+            className="w-[var(--radix-popover-trigger-width)] p-0"
+            align="start"
+            onOpenAutoFocus={(event) => event.preventDefault()}
+          >
             {searchSettings.DisplayHeader && showHeader && (
               <div className="border-border border-b px-4 py-2 text-sm font-semibold">
                 {searchSettings.HeaderPreText} &apos;{searchKeyphrase}&apos;
