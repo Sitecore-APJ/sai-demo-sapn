@@ -2,7 +2,7 @@
 
 import { Placeholder, useSitecore } from '@sitecore-content-sdk/nextjs';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState, type KeyboardEvent, type SyntheticEvent } from 'react';
+import { useCallback, useEffect, useRef, useState, type ChangeEvent, type SyntheticEvent } from 'react';
 
 import { ComponentProps } from '@/lib/component-props';
 import { paramFlag, paramInt } from '@/lib/search/parseSearchParams';
@@ -27,28 +27,25 @@ export const Default = (props: ComponentProps) => {
   const [searchKeyphrase, setSearchKeyphrase] = useSearchContext();
   const [isShowingResult, setIsShowingResult] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
+  const anchorRef = useRef<HTMLFormElement>(null);
 
   const onReset = useCallback(() => {
     setSearchKeyphrase('');
     setShowHeader(false);
   }, [setSearchKeyphrase]);
 
-  const onSearch = useCallback(
-    (searchInput: string) => {
-      if (searchInput.length === 0) {
-        onReset();
-      } else if (searchInput.length < searchSettings.MinCharacters) {
-        setShowHeader(false);
-      } else if (searchKeyphrase !== searchInput) {
-        setSearchKeyphrase(searchInput);
-      }
+  const handleInputChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value;
+      setIsShowingResult(true);
+      setShowHeader(value.length >= searchSettings.MinCharacters);
     },
-    [searchSettings.MinCharacters, searchKeyphrase, onReset, setSearchKeyphrase]
+    [searchSettings.MinCharacters]
   );
 
-  const handleKeyphraseChange = (e: KeyboardEvent<HTMLInputElement>) => {
-    onSearch(e.currentTarget.value);
-  };
+  const handleOpenSearch = useCallback(() => {
+    setIsShowingResult(true);
+  }, []);
 
   const handleSearchSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -79,8 +76,8 @@ export const Default = (props: ComponentProps) => {
           <SearchInput
             placeholder="Search"
             onReset={onReset}
-            onKeyUp={handleKeyphraseChange}
-            onFocus={() => setIsShowingResult(true)}
+            onChange={handleInputChange}
+            onFocus={handleOpenSearch}
           />
           {isShowingResult && <Placeholder name={phKey} rendering={props.rendering} />}
         </div>
@@ -93,20 +90,26 @@ export const Default = (props: ComponentProps) => {
       <div className="component-content">
         <Popover open={isShowingResult} onOpenChange={setIsShowingResult}>
           <PopoverAnchor asChild>
-            <form onSubmit={handleSearchSubmit} className="w-full">
+            <form ref={anchorRef} onSubmit={handleSearchSubmit} className="w-full">
               <SearchInput
                 name="query"
                 placeholder="Search"
                 onReset={onReset}
-                onKeyUp={handleKeyphraseChange}
-                onFocus={() => setIsShowingResult(true)}
+                onChange={handleInputChange}
+                onFocus={handleOpenSearch}
               />
             </form>
           </PopoverAnchor>
           <PopoverContent
-            className="w-[var(--radix-popover-trigger-width)] p-0"
+            className="w-[var(--radix-popover-anchor-width,var(--radix-popover-trigger-width))] p-0"
             align="start"
             onOpenAutoFocus={(event) => event.preventDefault()}
+            onFocusOutside={(event) => event.preventDefault()}
+            onInteractOutside={(event) => {
+              if (anchorRef.current?.contains(event.target as Node)) {
+                event.preventDefault();
+              }
+            }}
           >
             {searchSettings.DisplayHeader && showHeader && (
               <div className="border-border border-b px-4 py-2 text-sm font-semibold">
