@@ -6,8 +6,12 @@ import { LayoutGrid, List, X } from 'lucide-react';
 import {
   WidgetDataType,
   useSearchResults,
+  useSearchResultsActions,
+  useSearchResultsIsSelectedFacet,
   useSearchResultsSelectedFacets,
   widget,
+  type SearchResponseFacet,
+  type SearchResponseFacetItem,
   type SearchResultsInitialState,
   type SearchResultsStoreState,
 } from '@sitecore-search/react';
@@ -38,6 +42,45 @@ type ContentResultsProps = {
 };
 
 type InitialState = SearchResultsInitialState<'itemsPerPage' | 'keyphrase' | 'page' | 'sortType'>;
+
+type DrawerFacetValueButtonProps = {
+  facet: SearchResponseFacet;
+  facetIndex: number;
+  value: SearchResponseFacetItem;
+  valueIndex: number;
+  onFacetClick: ReturnType<typeof useSearchResultsActions>['onFacetClick'];
+};
+
+function DrawerFacetValueButton({
+  facet,
+  facetIndex,
+  value,
+  valueIndex,
+  onFacetClick,
+}: DrawerFacetValueButtonProps) {
+  const isSelected = useSearchResultsIsSelectedFacet(facet.name, value.id);
+
+  return (
+    <button
+      type="button"
+      onClick={() =>
+        onFacetClick({
+          facetId: facet.name,
+          facetIndex,
+          facetValueId: value.id,
+          facetValueIndex: valueIndex,
+          checked: !isSelected,
+          type: 'valueId',
+        })
+      }
+      className={`text-left text-sm hover:underline ${
+        isSelected ? 'text-accent font-semibold' : 'text-foreground hover:text-accent'
+      }`}
+    >
+      {value.text} {value.count ? `(${value.count})` : ''}
+    </button>
+  );
+}
 
 export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings }) => {
   const { page } = useSitecore();
@@ -83,6 +126,7 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
     }
   }, [onKeyphraseChange, searchKeyphrase, settings.KeywordSearch]);
 
+  const { onFacetClick, onRemoveFilter, onClearFilters } = useSearchResultsActions();
   const selectedFacetsFromApi = useSearchResultsSelectedFacets();
   const [resultView, setResultView] = useState(settings.DefaultView || 'grid');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -90,20 +134,35 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
 
   const numColumns = resultView === 'grid' ? settings.NumberOfColumns : 1;
   const isLoaded = !isLoading && !isFetching;
-
-  if (!items.length) {
-    return null;
-  }
+  const hasSelectedFilters = selectedFacetsFromApi.some((facet) => facet.values.length > 0);
+  const resultsStart = totalItems === 0 ? 0 : itemsPerPage * (currentPage - 1) + 1;
+  const resultsEnd = totalItems === 0 ? 0 : itemsPerPage * (currentPage - 1) + items.length;
 
   return (
     <div ref={widgetRef} className="relative m-2">
-      {!isLoaded && <Spinner loading />}
+      {isLoading && <Spinner loading />}
+      {isFetching && !isLoading && (
+        <div className="bg-background/50 absolute inset-0 z-10 flex items-center justify-center">
+          <Spinner loading />
+        </div>
+      )}
 
       {settings.AllowFilters && (
         <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen} direction="left">
           <DrawerContent className="data-[vaul-drawer-direction=left]:sm:max-w-md">
             <DrawerHeader>
-              <DrawerTitle>Filters</DrawerTitle>
+              <div className="flex items-center justify-between gap-2 pr-8">
+                <DrawerTitle>Filters</DrawerTitle>
+                {hasSelectedFilters && (
+                  <button
+                    type="button"
+                    onClick={() => onClearFilters()}
+                    className="text-accent hover:text-accent-dark text-sm font-medium"
+                  >
+                    Clear all
+                  </button>
+                )}
+              </div>
               <DrawerClose className="text-foreground-light hover:text-foreground absolute top-4 right-4">
                 <X className="size-4" />
               </DrawerClose>
@@ -119,6 +178,15 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
                       <button
                         type="button"
                         key={`${facet.facetId}${facet.facetLabel}${facet.valueLabel}`}
+                        onClick={() =>
+                          onRemoveFilter({
+                            type: facet.type,
+                            facetId: facet.facetId,
+                            facetValueId: 'facetValueId' in facet ? facet.facetValueId : undefined,
+                            facetValueText:
+                              'facetValueText' in facet ? facet.facetValueText : undefined,
+                          })
+                        }
                         className="bg-accent/10 text-accent inline-flex items-center gap-1 rounded px-3 py-1 text-sm"
                       >
                         {facet.facetLabel}: {facet.valueLabel}
@@ -128,20 +196,21 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
                   </CardContent>
                 </Card>
               ))}
-              {facets.map((f) => (
+              {facets.map((f, facetIndex) => (
                 <Card key={`${f.label}${f.name}`} className="border-border">
                   <CardHeader>
                     <CardTitle className="text-base">{f.label}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex flex-col items-start gap-2">
-                    {f.value.map((v) => (
-                      <button
-                        type="button"
+                    {f.value.map((v, valueIndex) => (
+                      <DrawerFacetValueButton
                         key={v.id}
-                        className="text-foreground hover:text-accent text-left text-sm hover:underline"
-                      >
-                        {v.text} {v.count ? `(${v.count})` : ''}
-                      </button>
+                        facet={f}
+                        facetIndex={facetIndex}
+                        value={v}
+                        valueIndex={valueIndex}
+                        onFacetClick={onFacetClick}
+                      />
                     ))}
                   </CardContent>
                 </Card>
@@ -156,8 +225,7 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
           <div className="border-border flex flex-col items-center gap-2 rounded-md border p-5 md:flex-row">
             <div className="p-2">
               <h2 className="text-foreground text-lg font-semibold">
-                Showing {itemsPerPage * (currentPage - 1) + 1} -{' '}
-                {itemsPerPage * (currentPage - 1) + items.length} of {totalItems} results
+                Showing {resultsStart} - {resultsEnd} of {totalItems} results
               </h2>
             </div>
             <div className="flex-1" />
@@ -204,73 +272,77 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
         </>
       )}
 
-      <div
-        className="grid gap-2"
-        style={{ gridTemplateColumns: `repeat(${numColumns}, minmax(0, 1fr))` }}
-      >
-        {items.map((content, index) => {
-          const validImageUrl = content.image_url?.trim() ? content.image_url : DEFAULT_IMG_URL;
+      {isLoaded && items.length === 0 ? (
+        <p className="text-foreground-light py-8 text-center text-sm">No results found.</p>
+      ) : (
+        <div
+          className="grid gap-2"
+          style={{ gridTemplateColumns: `repeat(${numColumns}, minmax(0, 1fr))` }}
+        >
+          {items.map((content, index) => {
+            const validImageUrl = content.image_url?.trim() ? content.image_url : DEFAULT_IMG_URL;
 
-          return (
-            <Card
-              key={content.id}
-              className={`border-border overflow-hidden py-0 ${
-                resultView === 'list' ? 'md:flex-row' : 'flex-col'
-              }`}
-            >
-              {settings.DisplayImage && (
-                <div
-                  className={`relative shrink-0 ${
-                    resultView === 'list' ? 'h-40 w-40' : 'aspect-[4/3] w-full'
-                  }`}
-                >
-                  <SearchImage src={validImageUrl} alt={content.name} fit="contain" />
-                </div>
-              )}
-              <CardContent className="relative flex flex-col gap-2 py-4">
-                <SearchLink
-                  href={content.url}
-                  WidgetId={settings.SearchWidgetId}
-                  Events={['EntityPageView', 'PreviewSearchClickEvent']}
-                  ItemIndex={index}
-                  EntityID={content.id}
-                  EntityType="content"
-                  className="text-foreground hover:underline"
-                >
-                  <h3 className="text-lg font-semibold">{content.name}</h3>
-                </SearchLink>
-                {settings.DisplayAddToFavourites && (
-                  <FavouriteButton
-                    className="absolute top-2 right-2"
-                    aria-label={`Add ${content.name} to your favourites`}
-                  />
+            return (
+              <Card
+                key={content.id}
+                className={`border-border overflow-hidden py-0 ${
+                  resultView === 'list' ? 'md:flex-row' : 'flex-col'
+                }`}
+              >
+                {settings.DisplayImage && (
+                  <div
+                    className={`relative shrink-0 ${
+                      resultView === 'list' ? 'h-40 w-40' : 'aspect-[4/3] w-full'
+                    }`}
+                  >
+                    <SearchImage src={validImageUrl} alt={content.name} fit="contain" />
+                  </div>
                 )}
-                {settings.DisplayContentType && content.type && (
-                  <span className="border-accent bg-background-accent inline-block w-fit rounded border px-2 py-0.5 text-xs text-white capitalize">
-                    {content.type}
-                  </span>
-                )}
-                {content.description && (
-                  <p className="text-foreground-light text-sm">{content.description}</p>
-                )}
-              </CardContent>
-              <CardFooter className="mt-auto pb-4">
-                <SearchLink
-                  href={content.url}
-                  WidgetId={settings.SearchWidgetId}
-                  Events={['EntityPageView', 'PreviewSearchClickEvent']}
-                  ItemIndex={index}
-                  EntityID={content.id}
-                  EntityType="content"
-                  className="bg-accent hover:bg-accent/90 inline-block rounded-md px-4 py-2 text-sm text-white"
-                >
-                  {settings.CTAButtonText}
-                </SearchLink>
-              </CardFooter>
-            </Card>
-          );
-        })}
-      </div>
+                <CardContent className="relative flex flex-col gap-2 py-4">
+                  <SearchLink
+                    href={content.url}
+                    WidgetId={settings.SearchWidgetId}
+                    Events={['EntityPageView', 'PreviewSearchClickEvent']}
+                    ItemIndex={index}
+                    EntityID={content.id}
+                    EntityType="content"
+                    className="text-foreground hover:underline"
+                  >
+                    <h3 className="text-lg font-semibold">{content.name}</h3>
+                  </SearchLink>
+                  {settings.DisplayAddToFavourites && (
+                    <FavouriteButton
+                      className="absolute top-2 right-2"
+                      aria-label={`Add ${content.name} to your favourites`}
+                    />
+                  )}
+                  {settings.DisplayContentType && content.type && (
+                    <span className="border-accent bg-background-accent inline-block w-fit rounded border px-2 py-0.5 text-xs text-white capitalize">
+                      {content.type}
+                    </span>
+                  )}
+                  {content.description && (
+                    <p className="text-foreground-light text-sm">{content.description}</p>
+                  )}
+                </CardContent>
+                <CardFooter className="mt-auto pb-4">
+                  <SearchLink
+                    href={content.url}
+                    WidgetId={settings.SearchWidgetId}
+                    Events={['EntityPageView', 'PreviewSearchClickEvent']}
+                    ItemIndex={index}
+                    EntityID={content.id}
+                    EntityType="content"
+                    className="bg-accent hover:bg-accent/90 inline-block rounded-md px-4 py-2 text-sm text-white"
+                  >
+                    {settings.CTAButtonText}
+                  </SearchLink>
+                </CardFooter>
+              </Card>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
