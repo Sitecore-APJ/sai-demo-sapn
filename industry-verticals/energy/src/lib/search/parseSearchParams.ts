@@ -1,4 +1,5 @@
 import type { ComponentParams } from '@sitecore-content-sdk/nextjs';
+import { SUGGESTIONS_WIDGET_ID } from '@/constants/search';
 import type {
   IRecommendationSettings,
   IRelatedQuestionsSettings,
@@ -48,14 +49,20 @@ export function parseSearchResultSettings(params: ComponentParams): ISearchResul
   };
 }
 
-export function parseSuggestionSettings(params: ComponentParams): ISuggestionSettings {
+export function parseSuggestionSettings(
+  params: ComponentParams,
+  renderingParams?: ComponentParams
+): ISuggestionSettings {
+  // Prefer rendering.params — merged props.params can pick up values from the placeholder parent.
+  const source = (renderingParams ?? params) as ComponentParams;
+
   return {
-    NumberOfItems: paramInt(params.NumberOfItems as string, 6),
-    SearchWidgetId: (params.SearchWidgetId as string) ?? '',
-    SuggestionAttribute: (params.SuggestionAttribute as string) ?? 'title_context_aware',
-    DisplayFrequency: paramFlag(params.DisplayFrequency as string, false),
-    DisplayTitle: paramFlag(params.DisplayTitle as string, false),
-    Title: (params.Title as string) ?? '',
+    NumberOfItems: paramInt(source.NumberOfItems as string, 6),
+    SearchWidgetId: (source.SearchWidgetId as string) || SUGGESTIONS_WIDGET_ID,
+    SuggestionAttribute: (source.SuggestionAttribute as string) || 'title_context_aware',
+    DisplayFrequency: paramFlag(source.DisplayFrequency as string, false),
+    DisplayTitle: paramFlag(source.DisplayTitle as string, false),
+    Title: (source.Title as string) || 'Related Questions',
   };
 }
 

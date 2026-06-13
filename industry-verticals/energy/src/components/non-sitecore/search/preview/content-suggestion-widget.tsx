@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import {
   WidgetDataType,
   usePreviewSearch,
@@ -16,13 +16,13 @@ type InitialState = PreviewSearchInitialState<'itemsPerPage' | 'suggestionsList'
 
 interface SuggestionsProps {
   settings: ISuggestionSettings;
+  rfkId?: string;
 }
-
-let keyphrase = '';
 
 export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ settings }) => {
   const [searchKeyphrase, setSearchKeyphrase] = useSearchContext();
   const [previewKeyphrase, setPreviewKeyphrase] = usePreviewKeyphrase();
+  const syncedKeyphraseRef = useRef('');
   const {
     widgetRef,
     actions: { onKeyphraseChange },
@@ -38,9 +38,9 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
   });
 
   useEffect(() => {
-    if (keyphrase !== searchKeyphrase) {
-      keyphrase = searchKeyphrase;
-      onKeyphraseChange({ keyphrase });
+    if (syncedKeyphraseRef.current !== searchKeyphrase) {
+      syncedKeyphraseRef.current = searchKeyphrase;
+      onKeyphraseChange({ keyphrase: searchKeyphrase });
     }
   }, [onKeyphraseChange, searchKeyphrase]);
 
