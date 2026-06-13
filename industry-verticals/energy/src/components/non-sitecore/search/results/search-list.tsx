@@ -91,7 +91,7 @@ export const SearchListComponent: React.FC<ContentResultsProps> = ({ settings })
                         />
                       )}
                       {settings.DisplayContentType && content.type && (
-                        <span className="bg-accent shrink-0 rounded px-2 py-0.5 text-xs text-white capitalize">
+                        <span className="border-accent bg-background-accent shrink-0 rounded border px-2 py-0.5 text-xs text-white capitalize">
                           {content.type}
                         </span>
                       )}

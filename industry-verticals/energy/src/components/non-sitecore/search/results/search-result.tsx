@@ -246,7 +246,7 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
                   />
                 )}
                 {settings.DisplayContentType && content.type && (
-                  <span className="bg-accent inline-block w-fit rounded px-2 py-0.5 text-xs text-white capitalize">
+                  <span className="border-accent bg-background-accent inline-block w-fit rounded border px-2 py-0.5 text-xs text-white capitalize">
                     {content.type}
                   </span>
                 )}

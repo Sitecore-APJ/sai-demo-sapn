@@ -28,7 +28,7 @@ export const ContentCard = ({ content, settings, itemIndex, className = '' }: Co
         )}
         {settings.DisplayContentType && type && (
           <span
-            className={`border-accent text-accent-dark bg-background-accent inline-block rounded-md border px-2 py-1 text-xs font-medium capitalize ${
+            className={`border-accent bg-background-accent inline-block rounded-md border px-2 py-1 text-xs font-medium text-white capitalize ${
               settings.DisplayImage ? 'absolute top-4 left-4' : 'relative mb-4'
             }`}
           >
