@@ -2,14 +2,14 @@
 
 import { ComponentProps } from '@/lib/component-props';
 import { paramFlag, paramInt } from '@/lib/search/parseSearchParams';
-import { useSitecore } from '@sitecore-content-sdk/nextjs';
+import { SearchAuthoringChrome } from '@/lib/search/SearchAuthoringChrome';
+import { useSearchAuthoring } from '@/lib/search/useSearchAuthoring';
 import type { ISuggestionSettings } from '@/types/search';
 import SuggestionWidget from '@/components/non-sitecore/search/preview/content-suggestion-widget';
 import { SUGGESTIONS_WIDGET_ID } from '@/constants/search';
 
 export const Default = (props: ComponentProps) => {
-  const { page } = useSitecore();
-  const { isEditing } = page.mode;
+  const isAuthoring = useSearchAuthoring();
   const containerStyles = props.params?.Styles ? props.params.Styles : '';
   const styles = `${props.params?.GridParameters ?? ''} ${containerStyles}`.trimEnd();
   const id = props.params.RenderingIdentifier;
@@ -22,15 +22,11 @@ export const Default = (props: ComponentProps) => {
     DisplayTitle: paramFlag(props.params.DisplayTitle as string, false),
   };
 
-  if (isEditing) {
+  if (isAuthoring) {
     return (
       <div className={`component suggestions-default ${styles}`} id={id || undefined}>
         <div className="component-content">
-          <div className="flex flex-col gap-2">
-            <div className="bg-background-muted h-5 animate-pulse rounded" />
-            <div className="bg-background-muted h-5 animate-pulse rounded" />
-            <div className="bg-background-muted h-5 animate-pulse rounded" />
-          </div>
+          <SearchAuthoringChrome label="Suggestions" />
         </div>
       </div>
     );

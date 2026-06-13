@@ -1,6 +1,6 @@
 'use client';
 
-import { Placeholder, useSitecore } from '@sitecore-content-sdk/nextjs';
+import { Placeholder } from '@sitecore-content-sdk/nextjs';
 import { useRouter } from 'next/router';
 import {
   useCallback,
@@ -13,14 +13,14 @@ import {
 
 import { ComponentProps } from '@/lib/component-props';
 import { paramFlag, paramInt } from '@/lib/search/parseSearchParams';
+import { useSearchAuthoring } from '@/lib/search/useSearchAuthoring';
 import { usePreviewKeyphrase, useSearchContext } from '@/context/SearchContext';
 import SearchInput from '@/components/non-sitecore/search/preview/search-input';
 import { Popover, PopoverAnchor, PopoverContent } from '@/shadcn/components/ui/popover';
 
 export const Default = (props: ComponentProps) => {
   const router = useRouter();
-  const { page } = useSitecore();
-  const { isEditing } = page.mode;
+  const isAuthoring = useSearchAuthoring();
   const phKey = `previewSearch-${props.params.DynamicPlaceholderId ?? 'default'}`;
   const id = props.params.RenderingIdentifier;
   const styles = `component search-bar ${props.params.styles ?? ''}`.trimEnd();
@@ -80,17 +80,20 @@ export const Default = (props: ComponentProps) => {
     }
   }, [searchKeyphrase, searchSettings.MinCharacters]);
 
-  if (isEditing) {
+  if (isAuthoring) {
     return (
       <div className={`${styles} w-full py-5`} id={id || undefined}>
         <div className="component-content">
-          <SearchInput placeholder="Search" readOnly tabIndex={-1} aria-hidden />
-          <div className="border-border mt-4 rounded-md border border-dashed p-4">
-            <p className="text-foreground-light mb-3 text-xs font-medium">
-              Preview search components
-            </p>
-            <Placeholder name={phKey} rendering={props.rendering} />
+          <div
+            aria-hidden
+            className="border-border bg-background text-foreground-light rounded-md border px-10 py-2 text-base select-none"
+          >
+            Search
           </div>
+          <p className="text-foreground-light mt-4 mb-2 text-xs font-medium">
+            Preview search components
+          </p>
+          <Placeholder name={phKey} rendering={props.rendering} />
         </div>
       </div>
     );
