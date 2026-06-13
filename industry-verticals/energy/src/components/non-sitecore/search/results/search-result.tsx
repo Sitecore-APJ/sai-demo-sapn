@@ -187,7 +187,7 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
                               'facetValueText' in facet ? facet.facetValueText : undefined,
                           })
                         }
-                        className="bg-accent/10 text-accent inline-flex items-center gap-1 rounded px-3 py-1 text-sm"
+                        className="bg-background-accent text-accent-dark border-accent inline-flex items-center gap-1 rounded border px-3 py-1 text-sm"
                       >
                         {facet.facetLabel}: {facet.valueLabel}
                         <X className="size-3" />
