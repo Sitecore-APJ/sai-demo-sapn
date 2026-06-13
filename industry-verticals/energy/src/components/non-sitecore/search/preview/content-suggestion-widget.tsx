@@ -74,30 +74,27 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
       {settings.DisplayTitle && settings.Title && (
         <h4 className="text-foreground mb-4 text-lg font-semibold">{settings.Title}</h4>
       )}
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-1">
         {suggestions.map(({ text, freq }, index) => {
           const isActive = previewKeyphrase === text;
 
           return (
-            <li key={index}>
-              <button
-                type="button"
-                onClick={() => handleSuggestionClick(text)}
-                onMouseEnter={() => handleSuggestionMouseEnter(text)}
-                className={`w-full rounded-md px-2 py-1.5 text-left text-sm transition-colors ${
-                  isActive
-                    ? 'bg-background-accent/40 text-foreground'
-                    : 'text-foreground hover:bg-background-muted hover:text-accent'
-                }`}
-              >
-                {text}
-                {settings.DisplayFrequency && freq !== undefined && (
-                  <span className="bg-background-muted text-foreground-light ml-2 rounded px-2 py-0.5 text-xs">
-                    {freq}
-                  </span>
-                )}
-              </button>
-              <hr className="border-border mt-3" />
+            <li
+              key={index}
+              onClick={() => handleSuggestionClick(text)}
+              onMouseEnter={() => handleSuggestionMouseEnter(text)}
+              className={`cursor-pointer rounded-md px-2 py-1.5 text-sm transition-colors ${
+                isActive
+                  ? 'bg-background-accent/40 text-foreground'
+                  : 'text-foreground hover:bg-background-muted hover:text-accent'
+              }`}
+            >
+              {text}
+              {settings.DisplayFrequency && freq !== undefined && (
+                <span className="bg-background-muted text-foreground-light ml-2 rounded px-2 py-0.5 text-xs">
+                  {freq}
+                </span>
+              )}
             </li>
           );
         })}
