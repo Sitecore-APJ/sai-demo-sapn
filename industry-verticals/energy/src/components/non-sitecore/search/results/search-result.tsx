@@ -74,7 +74,7 @@ function DrawerFacetValueButton({
         })
       }
       className={`text-left text-sm hover:underline ${
-        isSelected ? 'text-accent font-semibold' : 'text-foreground hover:text-accent'
+        isSelected ? 'text-accent-dark font-semibold' : 'text-foreground hover:text-accent-dark'
       }`}
     >
       {value.text} {value.count ? `(${value.count})` : ''}
@@ -187,7 +187,7 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
                               'facetValueText' in facet ? facet.facetValueText : undefined,
                           })
                         }
-                        className="bg-background-accent text-accent-dark border-accent inline-flex items-center gap-1 rounded border px-3 py-1 text-sm"
+                        className="text-accent-dark inline-flex items-center gap-1 px-1 py-1 text-sm hover:underline"
                       >
                         {facet.facetLabel}: {facet.valueLabel}
                         <X className="size-3" />
