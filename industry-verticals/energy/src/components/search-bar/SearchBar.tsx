@@ -2,7 +2,14 @@
 
 import { Placeholder, useSitecore } from '@sitecore-content-sdk/nextjs';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useRef, useState, type ChangeEvent, type SyntheticEvent } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type SyntheticEvent,
+} from 'react';
 
 import { ComponentProps } from '@/lib/component-props';
 import { paramFlag, paramInt } from '@/lib/search/parseSearchParams';
