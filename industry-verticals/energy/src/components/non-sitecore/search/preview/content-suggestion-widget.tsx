@@ -22,7 +22,7 @@ let keyphrase = '';
 
 export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ settings }) => {
   const [searchKeyphrase, setSearchKeyphrase] = useSearchContext();
-  const [, setPreviewKeyphrase] = usePreviewKeyphrase();
+  const [previewKeyphrase, setPreviewKeyphrase] = usePreviewKeyphrase();
   const {
     widgetRef,
     actions: { onKeyphraseChange },
@@ -75,24 +75,32 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
         <h4 className="text-foreground mb-4 text-lg font-semibold">{settings.Title}</h4>
       )}
       <ul className="flex flex-col gap-3">
-        {suggestions.map(({ text, freq }, index) => (
-          <li key={index}>
-            <button
-              type="button"
-              onClick={() => handleSuggestionClick(text)}
-              onMouseEnter={() => handleSuggestionMouseEnter(text)}
-              className="text-foreground hover:text-accent w-full text-left text-sm hover:underline"
-            >
-              {text}
-              {settings.DisplayFrequency && freq !== undefined && (
-                <span className="bg-background-muted text-foreground-light ml-2 rounded px-2 py-0.5 text-xs">
-                  {freq}
-                </span>
-              )}
-            </button>
-            <hr className="border-border mt-3" />
-          </li>
-        ))}
+        {suggestions.map(({ text, freq }, index) => {
+          const isActive = previewKeyphrase === text;
+
+          return (
+            <li key={index}>
+              <button
+                type="button"
+                onClick={() => handleSuggestionClick(text)}
+                onMouseEnter={() => handleSuggestionMouseEnter(text)}
+                className={`w-full rounded-md px-2 py-1.5 text-left text-sm transition-colors ${
+                  isActive
+                    ? 'bg-background-accent/40 text-foreground'
+                    : 'text-foreground hover:bg-background-muted hover:text-accent'
+                }`}
+              >
+                {text}
+                {settings.DisplayFrequency && freq !== undefined && (
+                  <span className="bg-background-muted text-foreground-light ml-2 rounded px-2 py-0.5 text-xs">
+                    {freq}
+                  </span>
+                )}
+              </button>
+              <hr className="border-border mt-3" />
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
