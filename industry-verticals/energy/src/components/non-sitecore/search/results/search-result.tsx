@@ -167,7 +167,7 @@ export const SearchResultsComponent: React.FC<ContentResultsProps> = ({ settings
                   ref={btnRef}
                   type="button"
                   onClick={() => setIsDrawerOpen(true)}
-                  className="bg-accent hover:bg-accent/90 min-h-[58px] rounded-md px-6 text-white"
+                  className="main-btn min-h-[58px]"
                 >
                   Filter
                 </button>

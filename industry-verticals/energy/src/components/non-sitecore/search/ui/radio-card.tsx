@@ -68,7 +68,9 @@ export const RadioCard = ({ value, children, className = '' }: RadioCardProps) =
     <label
       htmlFor={id}
       className={`border-border cursor-pointer rounded-md border px-5 py-3 shadow-sm transition-colors ${
-        isChecked ? 'bg-accent border-accent text-white' : 'bg-background text-foreground'
+        isChecked
+          ? 'bg-accent border-accent text-background'
+          : 'bg-background text-foreground-light hover:bg-background-muted hover:text-foreground'
       } ${className}`}
     >
       <input
