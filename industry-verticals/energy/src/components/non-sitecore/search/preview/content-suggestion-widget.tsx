@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import {
   WidgetDataType,
   usePreviewSearch,
@@ -22,6 +22,8 @@ let keyphrase = '';
 
 export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ settings }) => {
   const [searchKeyphrase, setSearchKeyphrase] = useSearchContext();
+  const isHoveringSuggestionRef = useRef(false);
+  const typedKeyphraseRef = useRef(searchKeyphrase);
   const {
     widgetRef,
     actions: { onKeyphraseChange },
@@ -37,11 +39,39 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
   });
 
   useEffect(() => {
+    if (!isHoveringSuggestionRef.current) {
+      typedKeyphraseRef.current = searchKeyphrase;
+    }
+  }, [searchKeyphrase]);
+
+  useEffect(() => {
     if (keyphrase !== searchKeyphrase) {
       keyphrase = searchKeyphrase;
       onKeyphraseChange({ keyphrase });
     }
   }, [onKeyphraseChange, searchKeyphrase]);
+
+  const handleSuggestionMouseEnter = useCallback(
+    (text: string) => {
+      isHoveringSuggestionRef.current = true;
+      setSearchKeyphrase(text);
+    },
+    [setSearchKeyphrase]
+  );
+
+  const handleSuggestionsMouseLeave = useCallback(() => {
+    isHoveringSuggestionRef.current = false;
+    setSearchKeyphrase(typedKeyphraseRef.current);
+  }, [setSearchKeyphrase]);
+
+  const handleSuggestionClick = useCallback(
+    (text: string) => {
+      typedKeyphraseRef.current = text;
+      isHoveringSuggestionRef.current = false;
+      setSearchKeyphrase(text);
+    },
+    [setSearchKeyphrase]
+  );
 
   const suggestions = suggestionResult[settings.SuggestionAttribute] as
     | Array<{ text: string; freq?: number }>
@@ -58,12 +88,13 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
       {settings.DisplayTitle && settings.Title && (
         <h4 className="text-foreground mb-4 text-lg font-semibold">{settings.Title}</h4>
       )}
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-3" onMouseLeave={handleSuggestionsMouseLeave}>
         {suggestions.map(({ text, freq }, index) => (
           <li key={index}>
             <button
               type="button"
-              onClick={() => setSearchKeyphrase(text)}
+              onClick={() => handleSuggestionClick(text)}
+              onMouseEnter={() => handleSuggestionMouseEnter(text)}
               className="text-foreground hover:text-accent w-full text-left text-sm hover:underline"
             >
               {text}
