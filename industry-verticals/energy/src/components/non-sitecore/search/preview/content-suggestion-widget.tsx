@@ -14,6 +14,15 @@ import Spinner from '@/components/non-sitecore/search/Spinner';
 
 type InitialState = PreviewSearchInitialState<'itemsPerPage' | 'suggestionsList'>;
 
+function isValidSuggestionText(text: unknown): text is string {
+  if (typeof text !== 'string') {
+    return false;
+  }
+
+  const trimmed = text.trim();
+  return trimmed.length > 0 && trimmed.toLowerCase() !== '<nil>';
+}
+
 interface SuggestionsProps {
   settings: ISuggestionSettings;
   rfkId?: string;
@@ -59,9 +68,11 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
     [setPreviewKeyphrase, setSearchKeyphrase]
   );
 
-  const suggestions = suggestionResult[settings.SuggestionAttribute] as
-    | Array<{ text: string; freq?: number }>
-    | undefined;
+  const suggestions = (
+    suggestionResult[settings.SuggestionAttribute] as
+      | Array<{ text: string; freq?: number }>
+      | undefined
+  )?.filter((item) => isValidSuggestionText(item?.text));
   const isLoaded = !isLoading && !isFetching;
 
   if (!suggestions?.length) {
