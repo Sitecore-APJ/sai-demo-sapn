@@ -84,13 +84,13 @@ export const Default = (props: ComponentProps) => {
     return (
       <div className={`${styles} w-full py-5`} id={id || undefined}>
         <div className="component-content">
-          <SearchInput
-            placeholder="Search"
-            onReset={onReset}
-            onChange={handleInputChange}
-            onFocus={handleOpenSearch}
-          />
-          {isShowingResult && <Placeholder name={phKey} rendering={props.rendering} />}
+          <SearchInput placeholder="Search" readOnly tabIndex={-1} aria-hidden />
+          <div className="border-border mt-4 rounded-md border border-dashed p-4">
+            <p className="text-foreground-light mb-3 text-xs font-medium">
+              Preview search components
+            </p>
+            <Placeholder name={phKey} rendering={props.rendering} />
+          </div>
         </div>
       </div>
     );

@@ -51,10 +51,6 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
     [setPreviewKeyphrase]
   );
 
-  const handleSuggestionsMouseLeave = useCallback(() => {
-    setPreviewKeyphrase(searchKeyphrase);
-  }, [searchKeyphrase, setPreviewKeyphrase]);
-
   const handleSuggestionClick = useCallback(
     (text: string) => {
       setSearchKeyphrase(text);
@@ -78,7 +74,7 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
       {settings.DisplayTitle && settings.Title && (
         <h4 className="text-foreground mb-4 text-lg font-semibold">{settings.Title}</h4>
       )}
-      <ul className="flex flex-col gap-3" onMouseLeave={handleSuggestionsMouseLeave}>
+      <ul className="flex flex-col gap-3">
         {suggestions.map(({ text, freq }, index) => (
           <li key={index}>
             <button
