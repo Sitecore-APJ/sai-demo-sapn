@@ -16,6 +16,8 @@ type SearchContextValue = [
   Dispatch<SetStateAction<unknown[]>>,
   unknown[],
   Dispatch<SetStateAction<unknown[]>>,
+  string,
+  Dispatch<SetStateAction<string>>,
 ];
 
 const SearchContext = createContext<SearchContextValue | undefined>(undefined);
@@ -24,6 +26,7 @@ export function SearchContextProvider({ children }: { children: ReactNode }) {
   const [searchKeyphrase, setSearchKeyphrase] = useState('');
   const [searchFacets, setSearchFacets] = useState<unknown[]>([]);
   const [selectedSearchFacets, setSelectedSearchFacets] = useState<unknown[]>([]);
+  const [previewKeyphrase, setPreviewKeyphrase] = useState('');
 
   return (
     <SearchContext.Provider
@@ -34,6 +37,8 @@ export function SearchContextProvider({ children }: { children: ReactNode }) {
         setSearchFacets,
         selectedSearchFacets,
         setSelectedSearchFacets,
+        previewKeyphrase,
+        setPreviewKeyphrase,
       ]}
     >
       {children}
@@ -47,4 +52,9 @@ export function useSearchContext(): SearchContextValue {
     throw new Error('useSearchContext must be used within a SearchContextProvider');
   }
   return context;
+}
+
+export function usePreviewKeyphrase(): [string, Dispatch<SetStateAction<string>>] {
+  const context = useSearchContext();
+  return [context[6], context[7]];
 }

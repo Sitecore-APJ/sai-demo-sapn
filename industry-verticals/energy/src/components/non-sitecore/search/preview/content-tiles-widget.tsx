@@ -8,7 +8,7 @@ import {
   type PreviewSearchInitialState,
 } from '@sitecore-search/react';
 import type { ContentModel, ISearchSettings } from '@/types/search';
-import { useSearchContext } from '@/context/SearchContext';
+import { usePreviewKeyphrase } from '@/context/SearchContext';
 import { applySearchSources } from '@/lib/search/searchQuery';
 import { GridView } from '@/components/non-sitecore/search/ui/grid-view';
 import { ContentCard } from '@/components/non-sitecore/search/preview/content-card';
@@ -23,7 +23,7 @@ interface ContentTilesProps {
 let keyphrase = '';
 
 export const ContentTilesComponent: React.FC<ContentTilesProps> = ({ settings }) => {
-  const [searchKeyphrase] = useSearchContext();
+  const [previewKeyphrase] = usePreviewKeyphrase();
   const {
     widgetRef,
     actions: { onKeyphraseChange },
@@ -38,11 +38,11 @@ export const ContentTilesComponent: React.FC<ContentTilesProps> = ({ settings })
   });
 
   useEffect(() => {
-    if (keyphrase !== searchKeyphrase) {
-      keyphrase = searchKeyphrase;
+    if (keyphrase !== previewKeyphrase) {
+      keyphrase = previewKeyphrase;
       onKeyphraseChange({ keyphrase });
     }
-  }, [onKeyphraseChange, searchKeyphrase]);
+  }, [onKeyphraseChange, previewKeyphrase]);
 
   const isLoaded = !isLoading && !isFetching;
 

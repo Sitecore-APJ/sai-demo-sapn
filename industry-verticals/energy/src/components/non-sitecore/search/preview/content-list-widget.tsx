@@ -8,7 +8,7 @@ import {
   type PreviewSearchInitialState,
 } from '@sitecore-search/react';
 import type { ContentModel, ISearchSettings } from '@/types/search';
-import { useSearchContext } from '@/context/SearchContext';
+import { usePreviewKeyphrase } from '@/context/SearchContext';
 import { applySearchSources } from '@/lib/search/searchQuery';
 import { DEFAULT_IMG_URL } from '@/constants/search';
 import { FavouriteButton } from '@/components/non-sitecore/search/ui/favorite-button';
@@ -26,7 +26,7 @@ interface ContentListProps {
 let keyphrase = '';
 
 export const ContentListComponent: React.FC<ContentListProps> = ({ settings }) => {
-  const [searchKeyphrase] = useSearchContext();
+  const [previewKeyphrase] = usePreviewKeyphrase();
   const {
     widgetRef,
     actions: { onKeyphraseChange },
@@ -41,11 +41,11 @@ export const ContentListComponent: React.FC<ContentListProps> = ({ settings }) =
   });
 
   useEffect(() => {
-    if (keyphrase !== searchKeyphrase) {
-      keyphrase = searchKeyphrase;
+    if (keyphrase !== previewKeyphrase) {
+      keyphrase = previewKeyphrase;
       onKeyphraseChange({ keyphrase });
     }
-  }, [onKeyphraseChange, searchKeyphrase]);
+  }, [onKeyphraseChange, previewKeyphrase]);
 
   const isLoaded = !isLoading && !isFetching;
 

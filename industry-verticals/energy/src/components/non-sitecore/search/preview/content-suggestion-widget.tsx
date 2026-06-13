@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
   WidgetDataType,
   usePreviewSearch,
@@ -8,7 +8,7 @@ import {
   type PreviewSearchInitialState,
 } from '@sitecore-search/react';
 import type { ContentModel, ISuggestionSettings } from '@/types/search';
-import { useSearchContext } from '@/context/SearchContext';
+import { usePreviewKeyphrase, useSearchContext } from '@/context/SearchContext';
 import { applySearchSources } from '@/lib/search/searchQuery';
 import Spinner from '@/components/non-sitecore/search/Spinner';
 
@@ -22,8 +22,7 @@ let keyphrase = '';
 
 export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ settings }) => {
   const [searchKeyphrase, setSearchKeyphrase] = useSearchContext();
-  const isHoveringSuggestionRef = useRef(false);
-  const typedKeyphraseRef = useRef(searchKeyphrase);
+  const [, setPreviewKeyphrase] = usePreviewKeyphrase();
   const {
     widgetRef,
     actions: { onKeyphraseChange },
@@ -39,12 +38,6 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
   });
 
   useEffect(() => {
-    if (!isHoveringSuggestionRef.current) {
-      typedKeyphraseRef.current = searchKeyphrase;
-    }
-  }, [searchKeyphrase]);
-
-  useEffect(() => {
     if (keyphrase !== searchKeyphrase) {
       keyphrase = searchKeyphrase;
       onKeyphraseChange({ keyphrase });
@@ -53,24 +46,21 @@ export const ContentSuggestionComponent: React.FC<SuggestionsProps> = ({ setting
 
   const handleSuggestionMouseEnter = useCallback(
     (text: string) => {
-      isHoveringSuggestionRef.current = true;
-      setSearchKeyphrase(text);
+      setPreviewKeyphrase(text);
     },
-    [setSearchKeyphrase]
+    [setPreviewKeyphrase]
   );
 
   const handleSuggestionsMouseLeave = useCallback(() => {
-    isHoveringSuggestionRef.current = false;
-    setSearchKeyphrase(typedKeyphraseRef.current);
-  }, [setSearchKeyphrase]);
+    setPreviewKeyphrase(searchKeyphrase);
+  }, [searchKeyphrase, setPreviewKeyphrase]);
 
   const handleSuggestionClick = useCallback(
     (text: string) => {
-      typedKeyphraseRef.current = text;
-      isHoveringSuggestionRef.current = false;
       setSearchKeyphrase(text);
+      setPreviewKeyphrase(text);
     },
-    [setSearchKeyphrase]
+    [setPreviewKeyphrase, setSearchKeyphrase]
   );
 
   const suggestions = suggestionResult[settings.SuggestionAttribute] as

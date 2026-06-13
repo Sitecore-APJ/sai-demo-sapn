@@ -1,8 +1,8 @@
 'use client';
 
-import React, { forwardRef, useCallback, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useState } from 'react';
 import { Search, X } from 'lucide-react';
-import { useSearchContext } from '@/context/SearchContext';
+import { usePreviewKeyphrase, useSearchContext } from '@/context/SearchContext';
 
 export interface SearchInputProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -31,9 +31,15 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
     },
     ref
   ) => {
-    const [, setSearchKeyphrase] = useSearchContext();
+    const [searchKeyphrase, setSearchKeyphrase] = useSearchContext();
+    const [, setPreviewKeyphrase] = usePreviewKeyphrase();
     const [showReset, setShowReset] = useState(false);
     const [searchInput, setSearchInput] = useState('');
+
+    useEffect(() => {
+      setSearchInput(searchKeyphrase);
+      setShowReset(searchKeyphrase !== '');
+    }, [searchKeyphrase]);
 
     const sizeClasses = {
       sm: 'h-9 text-sm px-9',
@@ -46,17 +52,19 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
         setShowReset(e.target.value !== '');
         setSearchInput(e.target.value);
         setSearchKeyphrase(e.target.value);
+        setPreviewKeyphrase(e.target.value);
         onChange?.(e);
       },
-      [onChange, setSearchKeyphrase]
+      [onChange, setPreviewKeyphrase, setSearchKeyphrase]
     );
 
     const handleReset = useCallback(() => {
       setSearchInput('');
       setShowReset(false);
       setSearchKeyphrase('');
+      setPreviewKeyphrase('');
       onReset?.();
-    }, [onReset, setSearchKeyphrase]);
+    }, [onReset, setPreviewKeyphrase, setSearchKeyphrase]);
 
     return (
       <div className="relative w-full">

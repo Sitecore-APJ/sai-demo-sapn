@@ -8,7 +8,7 @@ import {
   type QuestionsInitialState,
 } from '@sitecore-search/react';
 import type { QuestionAnswerModel, IQuestionAnswerSettings } from '@/types/search';
-import { useSearchContext } from '@/context/SearchContext';
+import { usePreviewKeyphrase } from '@/context/SearchContext';
 import { applySearchSources } from '@/lib/search/searchQuery';
 
 type InitialState = QuestionsInitialState<'keyphrase'>;
@@ -20,7 +20,7 @@ interface QuestionAndAnswerProps {
 let keyphrase = '';
 
 export const QuestionAndAnswerComponent: React.FC<QuestionAndAnswerProps> = ({ settings }) => {
-  const [searchKeyphrase] = useSearchContext();
+  const [previewKeyphrase] = usePreviewKeyphrase();
   const {
     widgetRef,
     actions: { onKeyphraseChanged },
@@ -44,14 +44,14 @@ export const QuestionAndAnswerComponent: React.FC<QuestionAndAnswerProps> = ({ s
   });
 
   useEffect(() => {
-    if (keyphrase !== searchKeyphrase) {
-      keyphrase = searchKeyphrase;
+    if (keyphrase !== previewKeyphrase) {
+      keyphrase = previewKeyphrase;
       if (!keyphrase) {
         keyphrase = settings.DefaultQuestion;
       }
       onKeyphraseChanged({ keyphrase });
     }
-  }, [onKeyphraseChanged, searchKeyphrase, settings.DefaultQuestion]);
+  }, [onKeyphraseChanged, previewKeyphrase, settings.DefaultQuestion]);
 
   const isLoaded = !isLoading && !isFetching;
 

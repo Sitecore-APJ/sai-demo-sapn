@@ -13,7 +13,7 @@ import {
 
 import { ComponentProps } from '@/lib/component-props';
 import { paramFlag, paramInt } from '@/lib/search/parseSearchParams';
-import { useSearchContext } from '@/context/SearchContext';
+import { usePreviewKeyphrase, useSearchContext } from '@/context/SearchContext';
 import SearchInput from '@/components/non-sitecore/search/preview/search-input';
 import { Popover, PopoverAnchor, PopoverContent } from '@/shadcn/components/ui/popover';
 
@@ -32,14 +32,16 @@ export const Default = (props: ComponentProps) => {
   };
 
   const [searchKeyphrase, setSearchKeyphrase] = useSearchContext();
+  const [previewKeyphrase, setPreviewKeyphrase] = usePreviewKeyphrase();
   const [isShowingResult, setIsShowingResult] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
   const anchorRef = useRef<HTMLFormElement>(null);
 
   const onReset = useCallback(() => {
     setSearchKeyphrase('');
+    setPreviewKeyphrase('');
     setShowHeader(false);
-  }, [setSearchKeyphrase]);
+  }, [setPreviewKeyphrase, setSearchKeyphrase]);
 
   const handleInputChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -66,9 +68,11 @@ export const Default = (props: ComponentProps) => {
     }
     const urlQuery = new URLSearchParams(window.location.search).get('q');
     if (urlQuery) {
-      setSearchKeyphrase(decodeURIComponent(urlQuery));
+      const decoded = decodeURIComponent(urlQuery);
+      setSearchKeyphrase(decoded);
+      setPreviewKeyphrase(decoded);
     }
-  }, [setSearchKeyphrase]);
+  }, [setPreviewKeyphrase, setSearchKeyphrase]);
 
   useEffect(() => {
     if (searchKeyphrase.length >= searchSettings.MinCharacters) {
@@ -120,7 +124,7 @@ export const Default = (props: ComponentProps) => {
           >
             {searchSettings.DisplayHeader && showHeader && (
               <div className="border-border border-b px-4 py-2 text-sm font-semibold">
-                {searchSettings.HeaderPreText} &apos;{searchKeyphrase}&apos;
+                {searchSettings.HeaderPreText} &apos;{previewKeyphrase}&apos;
               </div>
             )}
             <div className="p-2">
