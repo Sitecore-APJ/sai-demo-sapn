@@ -5,7 +5,7 @@ import type { Page } from '@sitecore-content-sdk/nextjs';
 import { initAddressAutocomplete } from '@/lib/google-address-autocomplete/initAddressAutocomplete';
 
 type GoogleAddressAutocompleteOverlayProps = {
-  page?: Page;
+  page?: Page | null;
 };
 
 export default function GoogleAddressAutocompleteOverlay({
